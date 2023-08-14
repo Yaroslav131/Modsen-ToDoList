@@ -3,7 +3,7 @@ import { ImageName, filterButtonType } from '../../../types';
 import { Images } from '../../../constants';
 import { styles } from './styles';
 
-interface FilterButtonProps {
+interface TopicButtonProps {
   onClick: () => void
   buttonText?: string;
   buttonColor?: string
@@ -12,7 +12,7 @@ interface FilterButtonProps {
   imageSource: ImageName
 }
 
-function FilterButton(props: FilterButtonProps) {
+function TopicButton(props: TopicButtonProps) {
   let image = null;
 
   try {
@@ -35,4 +35,4 @@ function FilterButton(props: FilterButtonProps) {
   );
 }
 
-export default FilterButton;
+export default TopicButton;
