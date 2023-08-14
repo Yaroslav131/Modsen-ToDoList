@@ -1,44 +1,66 @@
+import { Dimensions, Image, TextInput } from 'react-native';
 import styled from 'styled-components/native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export const Container = styled.View`
   align-items: center;
-  width: 100%;
 `;
 
-export const StyledImage = styled.Image`
-  width: 100%;
+export const DateButtonContainer = styled.View`
+  margin-top: 60px;
+  margin-bottom: 30px;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-evenly;
 `;
 
-export const Content = styled.View``;
+export const SearchContainer = styled.View`
+  margin-top: 20px;
+  border-radius: 15px;
+  padding-vertical: 5px;
+  padding-horizontal: 15px;
+  flex-direction: row;
+  width: 80%;
+  background-color: #fff;
+  gap: 5px;
+  elevation: 30;
+`;
 
-export const SectionTitle = styled.Text`
-  margin-bottom: 10px;
-  font-size: 38px;
+export const SearchImage = styled.Image`
+  align-self: center;
+  flex: 1;
+  min-height: 30px;
+`;
+
+export const SearchInput = styled.TextInput`
+  font-family: jost_regular;
+  color: #363636;
+  flex: 9;
+  width: 100%;
+  font-size: 24px;
+`;
+
+export const DailyTaskText = styled.Text`
   font-family: jost_semiBold;
   color: #363636;
+  font-size: 28px;
   text-align: center;
+  margin-top: 100px;
 `;
 
-export const SectionDescription = styled.Text`
-  font-size: 18px;
-  font-family: jost_regular;
-  margin-horizontal: 45px;
-  text-align: center;
-  color: #8d93ab;
-  line-height: 20px;
-`;
-
-export const StartButton = styled.TouchableOpacity`
-  background-color: #9ba3eb;
-  border-radius: 15px;
-  align-items: center;
-  width: 80%;
-`;
-
-export const ButtonText = styled.Text`
+export const ChangeableTaskText = styled.Text`
   color: #fff;
-  font-size: 22px;
-  font-family: Roboto;
-  font-weight: bold;
-  padding: 10px;
+`;
+
+export const DateText = styled.Text`
+  font-family: jost_semiBold;
+  color: #363636;
+  font-size: 20px;
+  text-align: center;
+`;
+
+export const BottomContainer = styled.View`
+  height: ${screenWidth * 0.28 * 3 + screenWidth * 0.02 * 5}px;
+  align-items: center;
 `;

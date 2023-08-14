@@ -1,6 +1,6 @@
 import React from 'react';
 import { leftEllipse, rightEllipse } from '../../../assets/images';
-import { Container, StyledLeftEllipse, ChildrenContainer, StyledRightEllipse } from './styled';
+import { Container, StyledLeftEllipse, ChildrenContainer, StyledRightEllipse } from './styles';
 
 interface MainBackgroundLayoutProps {
   children: React.ReactNode;
