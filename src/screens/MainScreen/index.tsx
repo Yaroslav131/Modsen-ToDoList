@@ -4,7 +4,7 @@ import MainBackgroundLayout from '../../components/MainBackgroundLayout';
 import { formatDate } from '../../helpingFunctions';
 import { searchIcon } from '../../../assets/images';
 import DateButton from '../../components/DateButton';
-import FilterFlatList from '../../components/FilterFlatList';
+import TopicFlatList from '../../components/TopicFlatList';
 
 import {
   Container,
@@ -63,7 +63,7 @@ const MainScreen: React.FC = () => {
         </DateButtonContainer>
 
         <BottomContainer>
-          <FilterFlatList />
+          <TopicFlatList />
         </BottomContainer>
       </Container>
     </MainBackgroundLayout>
