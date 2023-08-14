@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         elevation: 3,
         width: screenWidth * 0.28,
         height: screenWidth * 0.28,
-        margin: 10,
+        margin:  screenWidth * 0.02,
         borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'space-evenly',
