@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 import MainBackgroundLayout from '../../components/MainBackgroundLayout';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { formatDate } from '../../helpingFunctions';
-import { largeRightEllipse, searchIcon } from '../../../assets/images';
+import { searchIcon } from '../../../assets/images';
 import DateButton from '../../components/DateButton';
+import FilterFlatList from '../../components/FilterFlatList';
 
-interface MainScreenProps {}
 
-interface DateInterface {
-  weekDay: string;
-  month: string;
-  day: string;
-  year: string;
-}
+interface MainScreenProps { }
 
 const MainScreen = (props: MainScreenProps) => {
   let taskCount = 5;
@@ -58,11 +59,7 @@ const MainScreen = (props: MainScreenProps) => {
           <DateButton buttonText="Month" />
         </View>
 
-        <View style={styles.dateButtonContainer}>
-          <DateButton buttonText="Today" />
-          <DateButton buttonText="Week" />
-          <DateButton buttonText="Month" />
-        </View>
+        <FilterFlatList />
       </View>
     </MainBackgroundLayout>
   );
@@ -71,8 +68,9 @@ const MainScreen = (props: MainScreenProps) => {
 const styles = StyleSheet.create({
   dateButtonContainer: {
     marginTop: 70,
+    marginBottom: 30,
     flexDirection: 'row',
-    width: '85%',
+    width: '90%',
     justifyContent: 'space-evenly',
   },
   searchContainer: {
