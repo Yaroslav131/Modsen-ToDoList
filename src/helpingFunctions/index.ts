@@ -8,3 +8,8 @@ export function formatDate(date: Date): string {
 
   return date.toLocaleDateString('en-US', options);
 }
+
+export function getRandomColor(colorsArray: string[]): string {
+  const randomIndex = Math.floor(Math.random() * colorsArray.length);
+  return colorsArray[randomIndex];
+}
