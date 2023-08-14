@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { welcomImg } from '../../../assets/images';
+import { welcomDescription, welcomTitle } from '../../constants';
+
 import {
   Container,
   ButtonText,
@@ -20,10 +22,9 @@ const WelcomScreen = (props: WelcomScreenProps) => {
     <Container>
       <StyledImage source={welcomImg} />
       <Content>
-        <SectionTitle>Manage your tasks</SectionTitle>
+        <SectionTitle>{welcomTitle}</SectionTitle>
         <SectionDescription>
-          Organize, plan, and collaborate on tasks with Modsen todo list. Your busy life deserves
-          this. you can manage checklist and your goal.
+          {welcomDescription}
         </SectionDescription>
       </Content>
       <StartButton onPress={props.pressHandler} activeOpacity={0.7}>

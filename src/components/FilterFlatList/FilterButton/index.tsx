@@ -3,7 +3,6 @@ import { ImageName, filterButtonType } from '../../../types';
 import { Images } from '../../../constants';
 import { styles } from './styles';
 
-
 interface FilterButtonProps {
   onClick: () => void
   buttonText?: string;

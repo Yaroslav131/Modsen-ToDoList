@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import MainBackgroundLayout from '../../components/MainBackgroundLayout';
-
 import { formatDate } from '../../helpingFunctions';
 import { searchIcon } from '../../../assets/images';
 import DateButton from '../../components/DateButton';
 import FilterFlatList from '../../components/FilterFlatList';
+
 import {
   Container,
   DailyTaskText,
@@ -18,10 +18,10 @@ import {
   BottomContainer
 } from './styles';
 
-interface MainScreenProps { }
 
-const MainScreen: React.FC<MainScreenProps> = () => {
+const MainScreen: React.FC = () => {
   let taskCount = 5;
+  
   const [currentDate, setCurrentDate] = useState(formatDate(new Date()));
   const [inputText, setInputText] = useState('');
 

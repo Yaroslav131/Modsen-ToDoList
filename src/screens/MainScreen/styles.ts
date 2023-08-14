@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const DateButtonContainer = styled.View`
-  margin-top: 60px;
+  margin-top: 50px;
   margin-bottom: 30px;
   flex-direction: row;
   width: 90%;
@@ -61,6 +61,6 @@ export const DateText = styled.Text`
 `;
 
 export const BottomContainer = styled.View`
-  height: ${screenWidth * 0.28 * 3 + screenWidth * 0.02 * 5}px;
+  height: ${screenWidth * 0.28 * 3 + screenWidth * 0.02 * 6}px;
   align-items: center;
 `;

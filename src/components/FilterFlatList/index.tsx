@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { FlatList, ListRenderItem, View } from "react-native";
+import { FlatList, ListRenderItem } from "react-native";
 import FilterButton from "./FilterButton";
 import { ImageName, filterButtonType } from "../../types";
+import { testArr } from "../../constants";
 
 interface FilterButtonType {
     onPress: () => void;
@@ -22,41 +23,6 @@ function FilterFlatList() {
     }
 
     useEffect(() => {
-        const testArr = [{
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        },
-        {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }, {
-            topic: "Some topic",
-            buttonColor: "#646FD4",
-            taskCounter: 4,
-        }]
-
         const customFilters: FilterButtonType[] = testArr.map(x => {
             return {
                 type: "filter",
@@ -67,6 +33,7 @@ function FilterFlatList() {
                 buttonColor: x.buttonColor
             } as FilterButtonType
         })
+        
         setFilterButtons(data.concat(customFilters).concat([addButtonData]))
     }, [])
 
