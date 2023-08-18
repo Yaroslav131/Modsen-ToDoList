@@ -5,6 +5,7 @@ export const windowWidth = Dimensions.get('window').width;
 
 export const Container = styled.View`
   flex-direction: row;
+  hight:100%;
 `;
 
 export const StyledLeftEllipse = styled(Image)`
@@ -27,10 +28,6 @@ export const StyledRightEllipse = styled(Image)`
 `;
 
 export const ChildrenContainer = styled.View`
-  flex: 1;
-  position: absolute;
+  flex:1;
   z-index: 5;
-  left: 0;
-  rigth: 0;
-  top: 0;
 `;

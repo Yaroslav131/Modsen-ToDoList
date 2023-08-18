@@ -1,12 +1,17 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { leftEllipse, rightEllipse } from '../../../assets/images';
-import { Container, StyledLeftEllipse, ChildrenContainer, StyledRightEllipse } from './styles';
+import {
+  Container, StyledLeftEllipse, ChildrenContainer, StyledRightEllipse,
+} from './styles';
 
 interface MainBackgroundLayoutProps {
   children: React.ReactNode;
 }
 
-const MainBackgroundLayout: React.FC<MainBackgroundLayoutProps> = (props) => {
+function MainBackgroundLayout(props: MainBackgroundLayoutProps) {
   return (
     <Container>
       <StyledLeftEllipse source={leftEllipse} />
@@ -14,6 +19,6 @@ const MainBackgroundLayout: React.FC<MainBackgroundLayoutProps> = (props) => {
       <ChildrenContainer>{props.children}</ChildrenContainer>
     </Container>
   );
-};
+}
 
 export default MainBackgroundLayout;
