@@ -1,4 +1,4 @@
-import { Dimensions, Image, TextInput } from 'react-native';
+import { Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 
 const screenWidth = Dimensions.get('window').width;

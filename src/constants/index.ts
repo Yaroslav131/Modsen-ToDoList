@@ -4,7 +4,7 @@ import { getId } from '@/helpingFunctions';
 import {
   icPlus, icBook, icDefault, icSchool, icShopping, icWork, icWorkout,
 } from '../../assets/images';
-import { ImagesType, SubTaskType, TaskType, TopicType } from '@/types';
+import { ImagesType, SubTaskType, TaskType, TopicType, addTaskStagesType } from '@/types';
 
 export const Images: ImagesType = {
   icPlus,
@@ -66,31 +66,9 @@ export const tasks: TaskType[] = [
     topicId: 'Workout',
     description: "Описание задачи 1",
     important: true,
-    date: "2023-08-17T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
-    isCompleted: false
-  },
-  {
-    id: "task2",
-    title: 'Work',
-    topicId: "topic2",
-    description: "Описание задачи 2",
-    important: false,
-    date: "2023-08-18T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
-    isCompleted: false
-  },
-  {
-    id: "task3",
-    title: "Задача 3",
-    topicId: "topic3",
-    description: "Описание задачи 3",
-    important: false,
-    date: "2023-08-17T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date: new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: false
   },
   {
@@ -99,9 +77,9 @@ export const tasks: TaskType[] = [
     topicId: "topic3",
     description: "Описание задачи 4",
     important: false,
-    date: "2023-08-18T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date:new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: false
   },
   {
@@ -110,9 +88,9 @@ export const tasks: TaskType[] = [
     topicId: "topic3",
     description: "Описание задачи 5",
     important: false,
-    date: "12.12.3012",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date:new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: false
   },
   {
@@ -121,9 +99,9 @@ export const tasks: TaskType[] = [
     topicId: "topic3",
     description: "Описание задачи 6",
     important: false,
-    date: "2023-08-18T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date:new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: true
   }
   ,
@@ -133,9 +111,9 @@ export const tasks: TaskType[] = [
     topicId: "School",
     description: "Описание задачи 7",
     important: false,
-    date: "2023-08-18T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date:new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: false
   },
   {
@@ -144,9 +122,9 @@ export const tasks: TaskType[] = [
     topicId: "School",
     description: "Описание задачи 8",
     important: false,
-    date: "2023-08-18T00:00:00",
-    forTime: "14:00 am",
-    tillTime: "16:00 pm",
+    date:new Date().toString(),
+    forTime:new Date().toString(),
+    tillTime:new Date().toString(),
     isCompleted: true
   }
 ];
@@ -171,3 +149,9 @@ export const subTasks: SubTaskType[] = [
     isCompleted: false
   }
 ];
+
+export const addTaskStages: addTaskStagesType[] = ["AddNameDescriptionImportant", "AddTopic", "AddStartTime", 'AddEndTime', "AddDate", "AddSubtask"];
+
+export const addStartTimeTitle = 'Task start time'
+export const addEndTimeTitle = 'Task end time'
+export const addDataTitle = 'Task data'

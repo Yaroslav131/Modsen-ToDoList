@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
     subTaskContainer: {
         flexDirection: "row",
         width: "80%",
-        gap: 15,
+        gap:15,
+        marginLeft:15,
        alignItems:"center"
     },
     container: {

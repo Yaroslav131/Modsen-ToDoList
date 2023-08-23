@@ -1,51 +1,36 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TopicType } from '../types';
+import { TopicType } from '@/types';
+import { getId, getRandomColor } from '@/helpingFunctions';
+import { basicTopics } from '@/constants';
 
-interface HistoryState {
+
+interface TopicState {
   value: TopicType[];
 }
 
-const initialState: HistoryState = {
-  value: [
-    {
-      imageSource: 'icSchool',
-      name: "School",
-      color: "#5EB0D2"
-    },
-    {
-      imageSource: 'icWork',
-      name: "Work",
-      color: "#BE8972"
-    }
-    ,
-    {
-      imageSource: 'icShopping',
-      name: "Shop",
-      color: "#2A8899"
-    },
-    {
-      name: "Read",
-      imageSource: 'icBook',
-      color: "#646FD4"
-    }
-    ,
-    {
-      imageSource: 'icWorkout',
-      name: "Workout",
-      color: "#83BC74"
-    },
-  ],
+const initialState: TopicState = {
+  value: basicTopics,
 };
 
 const topicSlice = createSlice({
   name: 'topics',
   initialState,
   reducers: {
-    addTopic: (state, action: PayloadAction<TopicType>) => {
-      state.value.push(action.payload);
+    addTopic: (state, action: PayloadAction<string>) => {
+      const topic: TopicType = {
+        type: 'custom',
+        color: getRandomColor(),
+        imageSource: 'icDefault',
+        name: action.payload,
+        id: getId()
+      }
+      state.value = [...state.value, topic];
     },
-    deleteTopic: (state, action: PayloadAction<TopicType>) => {
-      state.value = state.value.filter(topic => topic.name !== action.payload.name);
+    deleteTopic: (state, action: PayloadAction<string>) => {
+      state.value = state.value.filter((topic) => topic.id !== action.payload);
     },
   },
 });

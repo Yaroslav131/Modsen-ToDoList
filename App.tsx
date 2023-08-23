@@ -1,28 +1,33 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import React, { useState } from 'react';
 
-import WelcomScreen from './src/screens/WelcomScreen';
-import MainScreen from './src/screens/MainScreen';
 import { Provider } from 'react-redux';
-import store from './src/store/store';
+import WelcomScreen from '@/screens/WelcomScreen';
+import MainScreen from '@/screens/MainScreen';
+import store from '@/store/store';
+import Task from '@/components/Task';
+import TaskScreen from '@/screens/TaskScreen';
 
-function App(): JSX.Element {
-  const [isWellcomSreenCheck, setIsWellcomSreenCheck] = useState<Boolean>(false)
+function App() {
+  const [isWellcomSreenCheck, setIsWellcomSreenCheck] = useState<boolean>(false);
 
   function CheckWellcomSreen() {
-    setIsWellcomSreenCheck(true)
+    setIsWellcomSreenCheck(true);
   }
 
   return (
     <Provider store={store}>
-      {isWellcomSreenCheck ?
-        <>
-          <MainScreen />
-        </>
-        :
-        <WelcomScreen pressHandler={CheckWellcomSreen} />}
+      {isWellcomSreenCheck
+        ? (
+        //  <MainScreen />
+          <TaskScreen />
+        )
+        : <WelcomScreen pressHandler={CheckWellcomSreen} />}
     </Provider>
   );
 }
-
 
 export default App;

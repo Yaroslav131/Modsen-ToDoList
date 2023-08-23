@@ -18,14 +18,6 @@ export const StyledLeftEllipse = styled(Image)`
   z-index: 1;
 `;
 
-export const StyledRightEllipse = styled(Image)`
-  position: absolute;
-  right: -15px;
-  top: -15px;
-  width: ${windowWidth / 1.4}px;
-  resize-mode: stretch;
-  z-index: 2;
-`;
 
 export const ChildrenContainer = styled.View`
   flex:1;

@@ -1,7 +1,9 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import React from 'react';
 
 import { welcomImg } from '../../../assets/images';
-import { welcomDescription, welcomTitle } from '../../constants';
+import { welcomDescription, welcomTitle } from '@/constants';
 
 import {
   Container,
@@ -17,7 +19,7 @@ interface WelcomScreenProps {
   pressHandler: () => void;
 }
 
-const WelcomScreen = (props: WelcomScreenProps) => {
+function WelcomScreen({ pressHandler }: WelcomScreenProps) {
   return (
     <Container>
       <StyledImage source={welcomImg} />
@@ -27,11 +29,11 @@ const WelcomScreen = (props: WelcomScreenProps) => {
           {welcomDescription}
         </SectionDescription>
       </Content>
-      <StartButton onPress={props.pressHandler} activeOpacity={0.7}>
+      <StartButton onPress={pressHandler} activeOpacity={0.7}>
         <ButtonText>Get Started</ButtonText>
       </StartButton>
     </Container>
   );
-};
+}
 
 export default WelcomScreen;

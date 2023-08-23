@@ -1,16 +1,15 @@
-import {
-  Image, Text, TouchableOpacity,
-} from 'react-native';
-
+import { Image, Text, TouchableOpacity } from 'react-native';
 import { useState } from "react"
-import { ImageName, topicButtonType } from '../../../types';
-import { Images } from '../../../constants';
-import { styles } from './styles';
-import { deleteIcon } from '../../../../assets/images';
+
+import { ImageName, topicButtonType } from '@/types';
+import { Images } from '@/constants';
+import { deleteIcon } from '@assets/images';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { deleteTopic } from '@/slices/topicSlice';
 import { filterTasksByTopic } from '@/helpingFunctions';
+import { deleteTopicForTasks } from '@/slices/taskSlice';
 
+import { styles } from './styles';
 
 interface TopicButtonProps {
   id: string
@@ -26,18 +25,17 @@ function TopicButton(props: TopicButtonProps) {
   const dispatch = useAppDispatch()
   const tasks = useAppSelector(state => state.tasks.value)
   const taskCounter = filterTasksByTopic(tasks, props.id)
-  // const rotateValue = useSharedValue(0);
 
   function toggleDeleteButtonVisability() {
     setDeleteButtonVisability(!deleteButtonVisability)
   }
-
 
   function hidenButtonVisability() {
     setDeleteButtonVisability(false)
   }
 
   function deleteButton() {
+    dispatch(deleteTopicForTasks(props.id))
     dispatch(deleteTopic(props.id))
     setDeleteButtonVisability(false)
   }
@@ -77,14 +75,4 @@ function TopicButton(props: TopicButtonProps) {
   );
 }
 
-// {props.type == "custom" ?
-// <TouchableOpacity
-//   onPress={deleteButton}
-//   activeOpacity={0.5}
-//   style={[styles.deleteButton, { display: deleteButtonVisability ? 'flex' : "none" }]}>
-//   <Image style={styles.deleteImg} source={deleteIcon} />
-// </TouchableOpacity>
-// :
-// null
-// }
 export default TopicButton;

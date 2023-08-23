@@ -29,11 +29,7 @@ const SubTask = ({ isCompleted, title, id }: SubTaskProps) => {
                 <Text style={styles.titleText}>{title}</Text>
             </View>
 
-            <View style={styles.optionMenuContainer}>
-                <TouchableOpacity>
-                    <Image style={styles.optionMenuImage} source={optionMenu} />
-                </TouchableOpacity>
-            </View>
+           
         </View>
     );
 };
