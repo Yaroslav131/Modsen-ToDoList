@@ -6,6 +6,8 @@ export const windowWidth = Dimensions.get('window').width;
 export const Container = styled.View`
   flex-direction: row;
   hight:100%;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledLeftEllipse = styled(Image)`

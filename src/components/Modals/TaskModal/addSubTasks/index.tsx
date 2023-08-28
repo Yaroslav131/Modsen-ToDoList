@@ -4,6 +4,8 @@ import { ic_plus } from "@assets/images";
 import { Dimensions, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { TextInput, TitleText } from "../../styles";
+import { ErrorText } from "../../../../../styles";
+import * as Yup from "yup";
 
 interface AddSubTaskProps {
     subTasks: SubTaskType[],
@@ -11,24 +13,42 @@ interface AddSubTaskProps {
     onDeleteSubTasks: (id: string) => void
 }
 
+export const validationSchema = Yup.object().shape({
+    taskName: Yup.string().required("Input is required"),
+});
+
+
 function AddSubTask({ subTasks, onAddSubTasks, onDeleteSubTasks }: AddSubTaskProps) {
-
     const [subTaskName, setSubTaskName] = useState("")
+    const [validationError, setValidationError] = useState('');
 
+    function handleAddAddSubTask() {
+        try {
+            validationSchema.validateSync({ subTaskName });
+            onAddSubTasks(subTaskName)
+            setSubTaskName("")
+            setValidationError('');
+        } catch (error: any) {
+            setValidationError(error.message);
+        }
+    }
     return (
         <>
-            <TitleText>Subtasks (Optional)</TitleText>
+            <TitleText>Subtasks</TitleText>
 
-            <SubTaskFlatList tasks={subTasks} />
+            <SubTaskFlatList
+                isEdited={true}
+                onDeleteSubTasks={onDeleteSubTasks}
+                tasks={subTasks} />
+            {validationError !== "" && (
+                <ErrorText>{validationError}</ErrorText>
+            )}
             <TextInput
                 placeholder="New subtask"
                 value={subTaskName}
                 onChangeText={(text) => setSubTaskName(text)}
             />
-            <TouchableOpacity style={styles.addButton} onPress={() => { 
-                onAddSubTasks(subTaskName) 
-                setSubTaskName("")
-            }}>
+            <TouchableOpacity style={styles.addButton} onPress={handleAddAddSubTask}>
                 <Image style={styles.addButtonImage} source={ic_plus} />
             </TouchableOpacity>
         </>

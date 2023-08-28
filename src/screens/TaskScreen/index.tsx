@@ -1,26 +1,40 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
-import TasksBackgroundLayout from '@/components/bacgrondWrappers/TasksBackgroundLayout';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
+import TasksBackgroundLayout from '@/components/BackgroundWrappers/TasksBackgroundLayout';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import TaskFlatList from '@/components/TaskFlatList';
-import { closeDone, ic_plus, openDone } from '@assets/images';
-import { filterTasksByCompletion } from '@/helpingFunctions';
+import { backArrow, closeDone, ic_plus, openDone } from '@assets/images';
+import { filterTasksByCompletion, getSortedTasks } from '@/helpingFunctions';
 import ModalContainer from '@/components/ModalContainer';
 import TaskModal from '@/components/Modals/TaskModal';
 import { openModal } from '@/slices/modalSlice';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { RootRouteProps, StackNavigation, TaskType } from '@/types';
+import Header from '@/components/Header';
 
 
 function TaskScreen() {
-  const tasks = useAppSelector(state => state.tasks.value)
   const [isDoneTasksOpen, setIsDoneTasksOpen] = useState(false)
-
+  const [passedTasks, setPassedTasks] = useState<TaskType[]>([])
   const modalVisability = useAppSelector(state => state.modal.isVisible)
+  const tasks = useAppSelector(state => state.tasks.value)
+  const route = useRoute<RootRouteProps<"TaskScreen">>();
+
   const dispatch = useAppDispatch()
 
-  const completedTasks = filterTasksByCompletion(tasks, true)
-  const notCompletedTasks = filterTasksByCompletion(tasks, false)
+  const navigation = useNavigation<StackNavigation>();
+
+  const completedTasks = filterTasksByCompletion(passedTasks, true)
+  const notCompletedTasks = filterTasksByCompletion(passedTasks, false)
+
+
+  useEffect(() => {
+    setPassedTasks(getSortedTasks(tasks, route.params.type))
+
+  }, [tasks])
+
 
   function tonggleDoneTasks() {
     setIsDoneTasksOpen(!isDoneTasksOpen)
@@ -33,19 +47,26 @@ function TaskScreen() {
   return (
     <>
       <TasksBackgroundLayout>
+        <Header title={route.params.title}
+          leftImage={backArrow}
+          onPress={() => { navigation.goBack() }} />
+
         <View style={styles.container}>
+
           <View style={styles.scrollContainer}>
             {!isDoneTasksOpen &&
-              <TaskFlatList tasks={notCompletedTasks} />}
-            <>
+              < TaskFlatList tasks={notCompletedTasks} />}
+
+            <View >
               <View style={styles.horizontalLine} />
-              <View style={styles.doneTaskTongleContainer}>
+              <View style={[styles.doneTaskTongleContainer]}>
                 <Text style={styles.doneTaskTongText}>done tasks ({completedTasks.length})</Text>
                 <TouchableOpacity onPress={tonggleDoneTasks}>
                   <Image source={isDoneTasksOpen ? closeDone : openDone} />
                 </TouchableOpacity>
               </View>
-            </>
+            </View>
+
             {isDoneTasksOpen &&
               <TaskFlatList tasks={completedTasks} />}
           </View>
@@ -69,13 +90,35 @@ function TaskScreen() {
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  buttonImage: {
+    resizeMode: 'stretch'
+  },
+  titleText: {
+    fontSize: 28,
+    color: "#FFF",
+    fontFamily: "jost_semiBold",
+  },
+  backButton: {
+
+    justifyContent: 'center',
+    width: height * 0.03,
+    height: height * 0.03,
+    position: 'absolute',
+    left: 0
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: height * 0.09
+  },
   scrollContainer: {
-    flex: 8,
+    flex: 5,
   },
 
   container: {
     width: "90%",
-    height: height,
+    height: height*0.9,
     alignSelf: "center"
   },
   addButton: {
@@ -89,8 +132,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    padding: 30
+  
   },
   addButtonImage: {
     width: "80%",

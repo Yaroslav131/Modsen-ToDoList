@@ -3,20 +3,23 @@
 /* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SubTaskType, } from '@/types';
-import { subTasks } from '@/constants';
 
 interface SubTaskState {
   value: SubTaskType[];
 }
 
 const initialState: SubTaskState = {
-  value: subTasks,
+  value: [],
 };
 
 const subTaskSlice = createSlice({
   name: 'subTasks',
   initialState,
   reducers: {
+    setSubTasks: (state, action) => {
+
+      return action.payload;
+    },
     addSubTask: (state, action: PayloadAction<SubTaskType[]>) => {
 
       state.value = action.payload;
@@ -40,6 +43,6 @@ const subTaskSlice = createSlice({
   },
 });
 
-export const { addSubTask, changeSubTask, tongleSubTaskCompleted, deleteSubTask } = subTaskSlice.actions;
+export const { setSubTasks, addSubTask, changeSubTask, tongleSubTaskCompleted, deleteSubTask } = subTaskSlice.actions;
 
 export default subTaskSlice.reducer;

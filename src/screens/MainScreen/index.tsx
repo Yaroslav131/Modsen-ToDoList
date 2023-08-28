@@ -1,10 +1,9 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import React, { useEffect, useState, useId } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import MainBackgroundLayout from '@/components/bacgrondWrappers/MainBackgroundLayout';
-import { filterTasksForToday, formatDate } from '@/helpingFunctions';
-import { searchIcon } from '@assets/images';
+import MainBackgroundLayout from '@/components/BackgroundWrappers/MainBackgroundLayout';
+import { filtertoDoToday, formatDate } from '@/helpingFunctions';
 import DateButton from '@/components/DateButton';
 import TopicFlatList from '@/components/TopicFlatList';
 
@@ -13,9 +12,6 @@ import {
   DailyTaskText,
   ChangeableTaskText,
   DateText,
-  SearchContainer,
-  SearchImage,
-  SearchInput,
   DateButtonContainer,
   BottomContainer,
 } from './styles';
@@ -23,16 +19,20 @@ import ModalContainer from '@/components/ModalContainer';
 import TopicModal from '@/components/Modals/TopicModal';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { openModal } from '@/slices/modalSlice';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import SearchTask from '@/components/SearchTask';
+import { burgerMenu } from '@assets/images';
+import Header from '@/components/Header';
+import { StackNavigation } from '@/types';
 
 function MainScreen() {
   const [currentDate, setCurrentDate] = useState(formatDate(new Date()));
-  const [inputText, setInputText] = useState('');
-
   const tasks = useAppSelector(state => state.tasks.value)
   const modalVisability = useAppSelector(state => state.modal.isVisible)
   const dispatch = useAppDispatch()
+  const toDoToday = filtertoDoToday(tasks)
 
-  const todayTasks = filterTasksForToday(tasks)
+  const navigation = useNavigation<StackNavigation>();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,38 +51,41 @@ function MainScreen() {
 
   return (
     <MainBackgroundLayout>
+      <Header title="Modsen Todo list"
+        leftImage={burgerMenu}
+        onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()); }} />
       <Container>
         <DailyTaskText>
           {' '}
           you have
           {' '}
           <ChangeableTaskText>
-            {todayTasks.length}
+            {toDoToday.length}
             {' '}
             task
-            {todayTasks.length !== 1 ? 's' : ''}
+            {toDoToday.length !== 1 ? 's' : ''}
           </ChangeableTaskText>
           {' '}
           today!
         </DailyTaskText>
         <DateText>{currentDate}</DateText>
-        <SearchContainer>
-          <SearchImage source={searchIcon} />
-          <SearchInput
-            placeholder="Search tasks"
-            value={inputText}
-            onChangeText={(text) => setInputText(text)}
-          />
-        </SearchContainer>
+        <SearchTask tasks={tasks} />
 
         <DateButtonContainer>
-          <DateButton buttonText="Today" />
-          <DateButton buttonText="Week" />
-          <DateButton buttonText="Month" />
+          <DateButton
+            onPress={() => { navigation.navigate("TaskScreen", { type: "Today", title: "Today's tasks" }) }}
+            buttonText="Today" />
+          <DateButton
+            onPress={() => { navigation.navigate("TaskScreen", { type: "Week", title: "Week tasks" }) }}
+            buttonText="Week" />
+          <DateButton
+            onPress={() => { navigation.navigate("TaskScreen", { type: "Month", title: "Month tasks" }) }}
+            buttonText="Month" />
         </DateButtonContainer>
 
         <BottomContainer>
           <TopicFlatList
+            tasks={tasks}
             toggleAddTopicModal={handleToggleAddTopicModal} />
         </BottomContainer>
       </Container>
@@ -94,5 +97,6 @@ function MainScreen() {
     </MainBackgroundLayout>
   );
 }
+
 
 export default MainScreen;

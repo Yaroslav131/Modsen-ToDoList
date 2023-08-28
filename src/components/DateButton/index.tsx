@@ -5,11 +5,12 @@ import { ButtonWrapper, ButtonText } from './styles';
 
 interface DateButtonProps {
   buttonText: string
+  onPress: () => void
 }
 
-function DateButton({ buttonText }: DateButtonProps) {
+function DateButton({ buttonText, onPress }: DateButtonProps) {
   return (
-    <ButtonWrapper activeOpacity={0.5}>
+    <ButtonWrapper onPress={onPress} activeOpacity={0.5}>
       <ButtonText>{buttonText}</ButtonText>
     </ButtonWrapper>
   );

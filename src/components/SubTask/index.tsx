@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { checked, optionMenu } from "../../../assets/images";
+import { cancel, checked, optionMenu } from "@assets/images";
 import { styles } from "./styles";
 import { useAppDispatch } from "@/hooks";
 import { tongleSubTaskCompleted } from "@/slices/subTaskSlice";
@@ -9,9 +9,11 @@ interface SubTaskProps {
     id: string
     isCompleted: boolean
     title: string
+    onDeleteSubTasks: (id: string) => void
+    isEdited?: boolean
 }
 
-const SubTask = ({ isCompleted, title, id }: SubTaskProps) => {
+const SubTask = ({ isCompleted, title, id, onDeleteSubTasks,isEdited }: SubTaskProps) => {
 
     const dispatch = useAppDispatch()
 
@@ -23,13 +25,15 @@ const SubTask = ({ isCompleted, title, id }: SubTaskProps) => {
     return (
         <View style={styles.container}>
             <View style={styles.subTaskContainer}>
-                <TouchableOpacity onPress={handleCheck} activeOpacity={1} style={styles.checkBox}>
+                <TouchableOpacity onPress={handleCheck} style={styles.checkBox}>
                     {isCompleted && <Image style={styles.checkBoxImage} source={checked} />}
                 </TouchableOpacity>
                 <Text style={styles.titleText}>{title}</Text>
             </View>
 
-           
+            {isEdited && <TouchableOpacity onPress={() => { onDeleteSubTasks(id) }} style={styles.cancelButton}>
+                {<Image style={styles.checkBoxImage} source={cancel} />}
+            </TouchableOpacity>}
         </View>
     );
 };

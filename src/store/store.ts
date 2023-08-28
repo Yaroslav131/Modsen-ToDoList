@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 import { configureStore } from '@reduxjs/toolkit';
-import topicSlice from '@/slices/topicSlice';
-import taskSlice from '@/slices/taskSlice';
-import subTaskSlice from '@/slices/subTaskSlice';
+import topicSlice, { SetTopics } from '@/slices/topicSlice';
+import taskSlice, { setTasks } from '@/slices/taskSlice';
+import subTaskSlice, { setSubTasks } from '@/slices/subTaskSlice';
 import modalSlice from '@/slices/modalSlice';
-import taskIdOnchangeSlice from '@/slices/taskIdonchangeSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const store = configureStore({
   reducer: {
@@ -13,8 +13,41 @@ const store = configureStore({
     tasks: taskSlice,
     subTasks: subTaskSlice,
     modal: modalSlice,
-    taskIdOnchange: taskIdOnchangeSlice
   },
+});
+
+const saveDataToAsyncStorage = async (key: string, data: object) => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(data));
+  } catch (error) {
+    console.error('Error saving data to AsyncStorage:', error);
+  }
+};
+
+export const loadDataFromAsyncStorage = async () => {
+  try {
+    const topicsData = await AsyncStorage.getItem('topics');
+    const tasksData = await AsyncStorage.getItem('tasks');
+    const subTasksData = await AsyncStorage.getItem('subTasks');
+    if (topicsData) {
+      store.dispatch(SetTopics(JSON.parse(topicsData)));
+    }
+    if (tasksData) {
+      store.dispatch(setTasks(JSON.parse(tasksData)));
+    }
+    if (subTasksData) {
+      store.dispatch(setSubTasks(JSON.parse(subTasksData)));
+    }
+  } catch (error) {
+    console.error('Error loading data from AsyncStorage:', error);
+  }
+};
+
+store.subscribe(() => {
+  const state = store.getState();
+  saveDataToAsyncStorage("topics", state.topics);
+  saveDataToAsyncStorage("tasks", state.tasks);
+  saveDataToAsyncStorage("subTasks", state.subTasks);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

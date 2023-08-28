@@ -5,6 +5,8 @@ import SubTask from '../SubTask';
 
 interface SubTaskFlatListProps {
     tasks: SubTaskType[]
+    onDeleteSubTasks: (id: string) => void
+    isEdited?: boolean
 }
 
 function SubTaskFlatList(props: SubTaskFlatListProps) {
@@ -13,6 +15,8 @@ function SubTaskFlatList(props: SubTaskFlatListProps) {
             id={item.id}
             isCompleted={item.isCompleted}
             title={item.title}
+            onDeleteSubTasks={props.onDeleteSubTasks}
+            isEdited={props.isEdited}
         />
     );
 
@@ -21,7 +25,7 @@ function SubTaskFlatList(props: SubTaskFlatListProps) {
     return (
         <FlatList
             showsVerticalScrollIndicator={false}
-                data={props.tasks}
+            data={props.tasks}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             numColumns={1}

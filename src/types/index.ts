@@ -1,3 +1,5 @@
+import { NavigationProp, RouteProp } from "@react-navigation/native";
+
 export type ImageName = 'icPlus' | 'icBook' | 'icSchool' | 'icShopping' | 'icWork' | 'icWorkout' | 'icDefault';
 export type ImagesType = Record<ImageName, unknown>;
 
@@ -34,4 +36,19 @@ export interface SubTaskType {
     title: string
 }
 
+export type tasksScreenType =
+    "Today" | "Week" | "Month" | ["Topic", { id: string }]
+    | "Important" | ["Searched", { name: string }] | "Falled" | "Done" | "All"
 
+export type RootStackParamList = {
+    WelcomScreen: undefined;
+    HomeScreen: undefined;
+    TaskScreen: { type: tasksScreenType, title: string };
+};
+
+export type RootRouteProps<RouteName extends keyof RootStackParamList> = RouteProp<
+    RootStackParamList,
+    RouteName
+>;
+
+export type StackNavigation = NavigationProp<RootStackParamList>;

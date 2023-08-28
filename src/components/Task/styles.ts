@@ -12,17 +12,17 @@ export const dynamicTextStyles = (isDisplaySubTasks: boolean) => ({
 
 export const styles = StyleSheet.create({
 
-   
+
     settingContainer: {
         position: "absolute",
 
-        height: "100%",
         zIndex: 20,
         backgroundColor: "#FFF",
         borderRadius: 20,
-        elevation: 10,
+        elevation: 20,
         alignItems: "center",
         justifyContent: "space-evenly",
+        height: "auto",
         right: 40,
         padding: 15
     },

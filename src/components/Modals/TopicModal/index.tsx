@@ -12,41 +12,52 @@ import {
 } from '../styles';
 import { closeModal } from '@/slices/modalSlice';
 
-interface TopicModalProps {
+import { ErrorText } from '../../../../styles';
 
-}
+import * as Yup from "yup";
 
-const TopicModal = ({ }: TopicModalProps) => {
+export const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Input is required"),
+});
+
+const TopicModal = () => {
     const [name, setName] = useState('');
+    const [validationError, setValidationError] = useState('');
     const dispatch = useAppDispatch();
 
-    function handleAddTopic(name: string) {
-        dispatch(addTopic(name))
-        dispatch(closeModal())
+    function handleAddTopic() {
+        try {
+            validationSchema.validateSync({ name });
+            dispatch(addTopic(name));
+            dispatch(closeModal());
+            setName('');
+            setValidationError('');
+        } catch (error: any) {
+            setValidationError(error.message);
+        }
     }
 
     return (
-        <ContentContainer >
+        <ContentContainer>
             <TitleText>Topic name</TitleText>
             <TextInput
                 placeholder="Work"
                 value={name}
                 onChangeText={(text) => setName(text)}
             />
+            {validationError !== '' && (
+                <ErrorText >{validationError}</ErrorText>
+            )
+            }
             <ButtonContainer>
-                <CustomButton onPress={() => { dispatch(closeModal()) }}>
+                <CustomButton onPress={() => dispatch(closeModal())}>
                     <ButtonText>Back</ButtonText>
                 </CustomButton>
-                <CustomButton
-                    onPress={() => {
-                        handleAddTopic(name);
-                        setName('');
-                    }}
-                >
+                <CustomButton onPress={handleAddTopic}>
                     <ButtonText>Add</ButtonText>
                 </CustomButton>
             </ButtonContainer>
-        </ContentContainer>
+        </ContentContainer >
     );
 };
 

@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
 import TopicButton from './TopicButton';
-import { ImageName, topicButtonType } from '@/types';
+import { ImageName, StackNavigation, TaskType, topicButtonType } from '@/types';
 import { useAppSelector } from '@/hooks';
+import { useNavigation } from '@react-navigation/native';
+import { filterTasksByTopic } from '@/helpingFunctions';
 
 interface TopicButtonType {
   id: string;
@@ -17,12 +19,15 @@ interface TopicButtonType {
 }
 
 interface TopicFlatListProps {
+  tasks: TaskType[]
   toggleAddTopicModal: () => void
 }
 
-function TopicFlatList({ toggleAddTopicModal }: TopicFlatListProps) {
+function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
   const [topicButtons, setTopicButtons] = useState<TopicButtonType[]>([]);
   const topics = useAppSelector((state) => state.topics.value);
+  const navigation = useNavigation<StackNavigation>();
+
 
   const addButtonData: TopicButtonType = {
     id: "",
@@ -32,17 +37,22 @@ function TopicFlatList({ toggleAddTopicModal }: TopicFlatListProps) {
   };
 
   useEffect(() => {
-    const customFilters: TopicButtonType[] = topics.map((x) => ({
-      id: x.id,
-      type: x.type,
-      onPress: () => { },
-      buttonText: x.name,
-      imageSource: x.imageSource,
-      buttonColor: x.color,
-    } as TopicButtonType));
+    const customFilters: TopicButtonType[] = topics.map((x) => {
+      const topicTasks = filterTasksByTopic(tasks, x.id) 
+      return (
+        {
+          id: x.id,
+          type: x.type,
+          onPress: () => { navigation.navigate("TaskScreen", { type: ["Topic", { id: x.id }], title: `${x.name} tasks` }) },
+          buttonText: x.name,
+          imageSource: x.imageSource,
+          buttonColor: x.color,
+          taskCounter: topicTasks.length
+        } as TopicButtonType)
+    });
 
     setTopicButtons(customFilters.concat([addButtonData]));
-  }, [topics]);
+  }, [topics,tasks]);
 
   const renderItem: ListRenderItem<TopicButtonType> = ({ item }) => (
     <TopicButton
@@ -52,6 +62,7 @@ function TopicFlatList({ toggleAddTopicModal }: TopicFlatListProps) {
       buttonColor={item.buttonColor}
       buttonText={item.buttonText}
       imageSource={item.imageSource}
+      taskCounter={item.taskCounter}
     />
   );
 

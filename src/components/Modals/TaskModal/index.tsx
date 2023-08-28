@@ -18,14 +18,14 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { addTask, changeTask } from '@/slices/taskSlice';
 import { addSubTask } from '@/slices/subTaskSlice';
 import { closeModal } from '@/slices/modalSlice';
+import * as Yup from "yup";
+
+export const validationSchema = Yup.object().shape({
+    taskName: Yup.string().required("Input is required"),
+});
 
 
-
-interface TaskModalProps {
-}
-
-const TaskModal = ({
-}: TaskModalProps) => {
+const TaskModal = () => {
     const [currentStageId, setCurrentStageId] = useState(0);
     const dispatch = useAppDispatch()
 
@@ -33,7 +33,7 @@ const TaskModal = ({
 
     const taskOnChange = modalParams ? useAppSelector(state => state.tasks.value).find(x => x.id == modalParams) : null;
     const [taskName, setTaskName] = useState(taskOnChange ? taskOnChange.title : "");
-
+    const [nameValidationError, setNameValidationError] = useState("");
     const [description, setDescription] = useState<string | undefined>(taskOnChange?.description);
     const [isImportant, setIsImportant] = useState(taskOnChange ? taskOnChange.important : false);
     const [topicId, setTopicId] = useState<string | undefined>(taskOnChange?.topicId);
@@ -109,7 +109,16 @@ const TaskModal = ({
     }
 
     function handleIncrimentStageId() {
-        setCurrentStageId(currentStageId + 1)
+
+        try {
+            console.log(taskName)
+            validationSchema.validateSync({ taskName });
+            setCurrentStageId(currentStageId + 1)
+
+            setNameValidationError('');
+        } catch (error: any) {
+            setNameValidationError(error.message);
+        }
     }
 
     function handleDecrimentStageId() {
@@ -120,17 +129,16 @@ const TaskModal = ({
         setIsImportant(!isImportant)
     }
 
-
     return (
         <ContentContainer >
-
             {currentStage == "AddNameDescriptionImportant" ?
                 <AddNameDescriptionImportant
+                    validationError={nameValidationError}
                     description={description}
                     isImportant={isImportant}
                     handleToggleImportent={handleToggleImportent}
-                    onDescriptionTextCahnge={handleOnDescriptionChange}
-                    onNameTextCahnge={handleOnNameChange}
+                    onDescriptionTextChange={handleOnDescriptionChange}
+                    onNameTextChange={handleOnNameChange}
                     taskName={taskName} />
                 :
                 (currentStage == "AddTopic" ?

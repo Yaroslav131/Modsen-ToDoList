@@ -19,6 +19,10 @@ const topicSlice = createSlice({
   name: 'topics',
   initialState,
   reducers: {
+    SetTopics: (state, action) => {
+
+      return action.payload;
+    },
     addTopic: (state, action: PayloadAction<string>) => {
       const topic: TopicType = {
         type: 'custom',
@@ -35,6 +39,6 @@ const topicSlice = createSlice({
   },
 });
 
-export const { addTopic, deleteTopic } = topicSlice.actions;
+export const { SetTopics, addTopic, deleteTopic } = topicSlice.actions;
 
 export default topicSlice.reducer;

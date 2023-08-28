@@ -1,6 +1,7 @@
 import { topicColors } from "@/constants";
-import { SubTaskType, TaskType } from "@/types";
+import { SubTaskType, TaskType, tasksScreenType } from "@/types";
 import uuid from 'react-native-uuid';
+import * as Yup from "yup";
 
 export function formatDate(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
@@ -22,45 +23,80 @@ export function getId() {
   return uuid.v4().toString();
 }
 
-export function filterTasksForToday(tasks: TaskType[]): TaskType[] {
-  const today = new Date()
+function filterTasksForToday(tasks: TaskType[]): TaskType[] {
+  const today = new Date();
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-  const todayTasks = tasks.filter(task => new Date(task.date) === today);
+  const todayTasks = tasks.filter(task => {
+    const taskDate = new Date(task.date);
+    const taskDateWithoutTime = new Date(taskDate.getFullYear(), taskDate.getMonth(), taskDate.getDate());
+    return taskDateWithoutTime.getTime() === todayDate.getTime();
+  });
 
   return todayTasks;
 }
 
-export function filterTasksUntilEndOfWeek(tasks: TaskType[]): TaskType[] {
+export function filtertoDoToday(tasks: TaskType[]): TaskType[] {
+  const today = new Date();
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const todayTasks = tasks.filter(task => {
+    const taskDate = new Date(task.date);
+    const taskDateWithoutTime = new Date(taskDate.getFullYear(), taskDate.getMonth(), taskDate.getDate());
+    return taskDateWithoutTime.getTime() === todayDate.getTime() && !task.isCompleted;
+  });
+
+  return todayTasks;
+}
+
+function filterTasksUntilEndOfWeek(tasks: TaskType[]): TaskType[] {
   const today = new Date();
   const endOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - today.getDay()));
+  const endOfWeekDate = new Date(endOfWeek.getFullYear(), endOfWeek.getMonth(), endOfWeek.getDate());
 
-  const endOfWeekTasks = tasks.filter(task => new Date(task.date) <= endOfWeek);
+  const endOfWeekTasks = tasks.filter(task => {
+    const taskDate = new Date(task.date);
+    const taskDateWithoutTime = new Date(taskDate.getFullYear(), taskDate.getMonth(), taskDate.getDate());
+    return taskDateWithoutTime <= endOfWeekDate;
+  });
 
   return endOfWeekTasks;
 }
 
-export function filterTasksUntilEndOfMonth(tasks: TaskType[]): TaskType[] {
+function filterTasksUntilEndOfMonth(tasks: TaskType[]): TaskType[] {
   const today = new Date();
   const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  const endOfMonthDate = new Date(endOfMonth.getFullYear(), endOfMonth.getMonth(), endOfMonth.getDate());
 
-  const endOfMonthTasks = tasks.filter(task => new Date(task.date) <= endOfMonth);
+  const endOfMonthTasks = tasks.filter(task => {
+    const taskDate = new Date(task.date);
+    const taskDateWithoutTime = new Date(taskDate.getFullYear(), taskDate.getMonth(), taskDate.getDate());
+    return taskDateWithoutTime <= endOfMonthDate;
+  });
 
   return endOfMonthTasks;
 }
 
-export function filterOverdueTasks(tasks: TaskType[]): TaskType[] {
-  const today = new Date()
 
-  const overdueTasks = tasks.filter(task => new Date(task.date) < today && !task.isCompleted);
+function filterOverdueTasks(tasks: TaskType[]): TaskType[] {
+  const today = new Date();
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const overdueTasks = tasks.filter(task => {
+    const taskDate = new Date(task.date);
+    const taskDateWithoutTime = new Date(taskDate.getFullYear(), taskDate.getMonth(), taskDate.getDate());
+    return taskDateWithoutTime < todayDate;
+  });
 
   return overdueTasks;
 }
 
 export function filterTasksByTopic(tasks: TaskType[], topicId: string): TaskType[] {
-  return tasks.filter(task => task.topicId === topicId);
+
+  return tasks.filter(x => x.topicId === topicId);
 }
 
-export function filterTasksByImportance(tasks: TaskType[]): TaskType[] {
+function filterTasksByImportance(tasks: TaskType[]): TaskType[] {
   return tasks.filter(task => task.important === true);
 }
 
@@ -77,7 +113,10 @@ export function checkIsAllSubTaskCompleted(subTasks: SubTaskType[]) {
 
   return true
 }
-
+function filterTasksByPartialName(tasks: TaskType[], partialTaskName: string): TaskType[] {
+  const filteredTasks: TaskType[] = tasks.filter(task => task.title.startsWith(partialTaskName));
+  return filteredTasks;
+}
 export function formatTime(date: string): string {
   const hours = new Date(date).getHours();
   const minutes = new Date(date).getMinutes();
@@ -87,4 +126,35 @@ export function formatTime(date: string): string {
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
   return `${formattedHours}:${formattedMinutes} ${ampm}`;
+}
+
+
+export function getSortedTasks(tasks: TaskType[], type: tasksScreenType): TaskType[] {
+  if (type == "Done") {
+    return filterTasksByCompletion(tasks, true)
+  }
+  else if (type == "Falled") {
+    return filterOverdueTasks(tasks)
+  }
+  else if (type == "Important") {
+    return filterTasksByImportance(tasks)
+  }
+  else if (type == "Month") {
+    return filterTasksUntilEndOfMonth(tasks)
+  }
+  else if (type == "Today") {
+    return filterTasksForToday(tasks)
+  }
+  else if (type == "Week") {
+    return filterTasksUntilEndOfWeek(tasks)
+  }
+  else if (type[0] == "Topic") {
+    return filterTasksByTopic(tasks, type[1].id)
+  }
+  else if (type[0] == "Searched") {
+    return filterTasksByPartialName(tasks, type[1].name)
+  }
+  else {
+    return tasks
+  }
 }

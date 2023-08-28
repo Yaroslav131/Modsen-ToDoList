@@ -9,6 +9,16 @@ export const styles = StyleSheet.create({
         color: "#363636",
         fontSize: 18,
     },
+    cancelButton: {
+        height: width * 0.07,
+        width: width * 0.07,
+     
+        borderColor: "#E7E7E7",
+        
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
     checkBox: {
         height: width * 0.07,
         width: width * 0.07,
@@ -25,12 +35,12 @@ export const styles = StyleSheet.create({
     subTaskContainer: {
         flexDirection: "row",
         width: "80%",
-        gap:15,
-        marginLeft:15,
-       alignItems:"center"
+        gap: 15,
+        marginLeft: 15,
+        alignItems: "center"
     },
     container: {
-        marginVertical:10,
+        marginVertical: 10,
         alignItems: "center",
         flexDirection: "row",
     },

@@ -17,14 +17,13 @@ interface TopicButtonProps {
   buttonText?: string;
   buttonColor?: string
   type: topicButtonType
-  imageSource: ImageName
+  imageSource: ImageName,
+  taskCounter?:number
 }
 
 function TopicButton(props: TopicButtonProps) {
   const [deleteButtonVisability, setDeleteButtonVisability] = useState(false)
   const dispatch = useAppDispatch()
-  const tasks = useAppSelector(state => state.tasks.value)
-  const taskCounter = filterTasksByTopic(tasks, props.id)
 
   function toggleDeleteButtonVisability() {
     setDeleteButtonVisability(!deleteButtonVisability)
@@ -67,7 +66,7 @@ function TopicButton(props: TopicButtonProps) {
           style={[styles.button, { backgroundColor: props.buttonColor }]}>
 
 
-          <Text style={styles.counterText}>{taskCounter.length}</Text>
+          <Text style={styles.counterText}>{props.taskCounter}</Text>
           <Image style={styles.imgStyle} source={Images[props.imageSource]} />
           <Text style={styles.buttonText}>{props.buttonText}</Text>
         </TouchableOpacity>)

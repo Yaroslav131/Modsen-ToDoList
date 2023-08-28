@@ -3,20 +3,25 @@
 /* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '@/types';
-import { tasks } from '@/constants';
 
-interface HistoryState {
+
+
+interface TaskState {
   value: TaskType[];
 }
 
-const initialState: HistoryState = {
-  value: tasks,
+const initialState: TaskState = {
+  value: [],
 };
 
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
+    setTasks: (state, action) => {
+
+      return action.payload;
+    },
     addTask: (state, action: PayloadAction<TaskType>) => {
 
       state.value = [...state.value, action.payload];
@@ -44,6 +49,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { deleteTopicForTasks, addTask, changeTask, tongleTaskCompleted, deleteTask } = tasksSlice.actions;
+export const { deleteTopicForTasks, addTask, changeTask, tongleTaskCompleted, setTasks, deleteTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

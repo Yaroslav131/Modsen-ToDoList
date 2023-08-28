@@ -2,31 +2,26 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Provider } from 'react-redux';
-import WelcomScreen from '@/screens/WelcomScreen';
-import MainScreen from '@/screens/MainScreen';
-import store from '@/store/store';
-import Task from '@/components/Task';
-import TaskScreen from '@/screens/TaskScreen';
+import store, { loadDataFromAsyncStorage } from '@/store/store';
+import Route from '@/route';
+import 'react-native-gesture-handler'
+import ErrorBoundary from '@/screens/ErrorBoundary';
 
 function App() {
-  const [isWellcomSreenCheck, setIsWellcomSreenCheck] = useState<boolean>(false);
-
-  function CheckWellcomSreen() {
-    setIsWellcomSreenCheck(true);
-  }
+  useEffect(() => {
+    loadDataFromAsyncStorage()
+  }, [])
 
   return (
-    <Provider store={store}>
-      {isWellcomSreenCheck
-        ? (
-        //  <MainScreen />
-          <TaskScreen />
-        )
-        : <WelcomScreen pressHandler={CheckWellcomSreen} />}
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Route />
+      </Provider>
+    </ErrorBoundary>
   );
 }
 

@@ -2,6 +2,7 @@ import { Image, StyleSheet, TouchableOpacity, View, Dimensions } from "react-nat
 
 import { TextInput, TitleText } from "../../styles";
 import { important, notImportant } from '@assets/images';
+import { ErrorText } from "../../../../../styles";
 
 
 interface AddNameDescriptionImportantProps {
@@ -9,27 +10,34 @@ interface AddNameDescriptionImportantProps {
     description?: string;
     isImportant: boolean;
     handleToggleImportent: () => void;
-    onDescriptionTextCahnge: (text: string) => void;
-    onNameTextCahnge: (text: string) => void;
+    onDescriptionTextChange: (text: string) => void;
+    onNameTextChange: (text: string) => void;
+    validationError: string
 }
 function AddNameDescriptionImportant({
     taskName,
     description,
     isImportant,
     handleToggleImportent,
-    onNameTextCahnge,
-    onDescriptionTextCahnge,
+    onNameTextChange,
+    onDescriptionTextChange,
+    validationError
 }: AddNameDescriptionImportantProps) {
     return (
         <>
+
             <View style={styles.container}>
 
                 <View style={styles.nameInputContainer}>
                     <TitleText>Task name</TitleText>
+                    {validationError !== '' && (
+                        <ErrorText >{validationError}</ErrorText>
+                    )
+                    }
                     <TextInput
                         placeholder="Do homework"
                         value={taskName}
-                        onChangeText={onNameTextCahnge}
+                        onChangeText={onNameTextChange}
                     />
                 </View>
                 <TouchableOpacity style={styles.checkBox} onPress={handleToggleImportent} activeOpacity={0.5} >
@@ -37,13 +45,12 @@ function AddNameDescriptionImportant({
                 </TouchableOpacity>
             </View>
 
-            <TitleText>Description (Optional)</TitleText>
+            <TitleText>Description</TitleText>
             <TextInput
                 placeholder="Do homework"
                 value={description}
-                onChangeText={onDescriptionTextCahnge}
+                onChangeText={onDescriptionTextChange}
             />
-
         </>
     );
 }

@@ -32,7 +32,7 @@ function AddTopic({ handleOnTopicChosen, chosenId }: AddTopicProps) {
 
     return (
         <View style={styles.container}>
-            <TitleText>Choose topic (Optional)</TitleText>
+            <TitleText>Choose topic</TitleText>
 
             <FlatList
                 style={styles.flatList}

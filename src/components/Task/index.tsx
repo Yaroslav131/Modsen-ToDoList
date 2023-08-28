@@ -6,7 +6,8 @@ import {
     TouchableWithoutFeedback,
     Image,
 } from "react-native";
-import { checked, optionMenu } from "../../../assets/images";
+
+import { checked, optionMenu } from "@assets/images";
 import { dynamicTextStyles, styles } from "./styles";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import SubTaskFlatList from "../SubTaskFlatList";
@@ -14,6 +15,7 @@ import { tongleSubTaskCompleted } from "@/slices/subTaskSlice";
 import { deleteTask, tongleTaskCompleted } from "@/slices/taskSlice";
 import { checkIsAllSubTaskCompleted, formatTime } from "@/helpingFunctions";
 import { openModalWithParams } from "@/slices/modalSlice";
+
 import SettingButton from "./SettingButton";
 
 interface TaskProps {
