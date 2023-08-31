@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
 export interface ErrorBoundaryProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export interface ErrorBoundaryState {
-    hasError: boolean;
-    error: Error | null;
+  hasError: boolean;
+  error: Error | null;
 }

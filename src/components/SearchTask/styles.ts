@@ -1,4 +1,4 @@
-import { styled } from "styled-components/native";
+import { styled } from 'styled-components/native';
 
 export const SearchContainer = styled.View`
   margin-top: 20px;
@@ -16,17 +16,15 @@ export const SearchFieldContainer = styled.View`
 `;
 
 export const SearchButton = styled.TouchableOpacity`
-min-height: 30px;
-flex: 1;
-align-self: center;
+  min-height: 30px;
+  flex: 1;
+  align-self: center;
 `;
-
 
 export const SearchImage = styled.Image`
   align-self: center;
   min-height: 30px;
 `;
-
 
 export const SearchInput = styled.TextInput`
   font-family: jost_regular;
@@ -35,4 +33,3 @@ export const SearchInput = styled.TextInput`
   width: 100%;
   font-size: 24px;
 `;
-

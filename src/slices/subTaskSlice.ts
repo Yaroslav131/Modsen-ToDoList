@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SubTaskType, } from '@/types';
+import { SubTaskType } from '@/types';
 
 interface SubTaskState {
   value: SubTaskType[];
@@ -16,24 +16,20 @@ const subTaskSlice = createSlice({
   name: 'subTasks',
   initialState,
   reducers: {
-    setSubTasks: (state, action) => {
-
-      return action.payload;
-    },
+    setSubTasks: (state, action) => action.payload,
     addSubTask: (state, action: PayloadAction<SubTaskType[]>) => {
-
       state.value = action.payload;
     },
     changeSubTask: (state, action: PayloadAction<SubTaskType>) => {
-      const updatedTaskIndex = state.value.findIndex(task => task.id === action.payload.id);
+      const updatedTaskIndex = state.value.findIndex((task) => task.id === action.payload.id);
       if (updatedTaskIndex !== -1) {
         state.value[updatedTaskIndex] = action.payload;
       }
     },
     tongleSubTaskCompleted: (state, action: PayloadAction<[string, boolean]>) => {
-      const updatedTaskIndex = state.value.findIndex(task => task.id === action.payload[0]);
+      const updatedTaskIndex = state.value.findIndex((task) => task.id === action.payload[0]);
       if (updatedTaskIndex !== -1) {
-        state.value[updatedTaskIndex].isCompleted = action.payload[1]
+        state.value[updatedTaskIndex].isCompleted = action.payload[1];
       }
     },
 
@@ -43,6 +39,8 @@ const subTaskSlice = createSlice({
   },
 });
 
-export const { setSubTasks, addSubTask, changeSubTask, tongleSubTaskCompleted, deleteSubTask } = subTaskSlice.actions;
+export const {
+  setSubTasks, addSubTask, changeSubTask, tongleSubTaskCompleted, deleteSubTask,
+} = subTaskSlice.actions;
 
 export default subTaskSlice.reducer;

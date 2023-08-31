@@ -6,7 +6,6 @@ import { TopicType } from '@/types';
 import { getId, getRandomColor } from '@/helpingFunctions';
 import { basicTopics } from '@/constants';
 
-
 interface TopicState {
   value: TopicType[];
 }
@@ -19,18 +18,15 @@ const topicSlice = createSlice({
   name: 'topics',
   initialState,
   reducers: {
-    SetTopics: (state, action) => {
-
-      return action.payload;
-    },
+    SetTopics: (state, action) => action.payload,
     addTopic: (state, action: PayloadAction<string>) => {
       const topic: TopicType = {
         type: 'custom',
         color: getRandomColor(),
         imageSource: 'icDefault',
         name: action.payload,
-        id: getId()
-      }
+        id: getId(),
+      };
       state.value = [...state.value, topic];
     },
     deleteTopic: (state, action: PayloadAction<string>) => {

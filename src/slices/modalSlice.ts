@@ -4,33 +4,33 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface modalSliceState {
-    isVisible: boolean;
-    modalParams: string | null
+  isVisible: boolean;
+  modalParams: string | null;
 }
 
 const initialState: modalSliceState = {
-    isVisible: false,
-    modalParams: null
+  isVisible: false,
+  modalParams: null,
 };
 
 const modalSlice = createSlice({
-    name: 'modal',
-    initialState,
-    reducers: {
-        openModal: (state) => {
-            state.modalParams = null
-            state.isVisible = !state.isVisible;
-        },
-        closeModal: (state) => {
-            state.isVisible = !state.isVisible;
-        },
-        openModalWithParams: (state, action: PayloadAction<string>) => {
-            state.modalParams = action.payload
-            state.isVisible = !state.isVisible;
-        }
+  name: 'modal',
+  initialState,
+  reducers: {
+    openModal: (state) => {
+      state.modalParams = null;
+      state.isVisible = !state.isVisible;
     },
+    closeModal: (state) => {
+      state.isVisible = !state.isVisible;
+    },
+    openModalWithParams: (state, action: PayloadAction<string>) => {
+      state.modalParams = action.payload;
+      state.isVisible = !state.isVisible;
+    },
+  },
 });
 
-export const { openModal,closeModal,openModalWithParams } = modalSlice.actions;
+export const { openModal, closeModal, openModalWithParams } = modalSlice.actions;
 
 export default modalSlice.reducer;

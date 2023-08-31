@@ -3,18 +3,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import WelcomScreen from '@/screens/WelcomScreen';
-import MainScreen from '@/screens/MainScreen';
-import TaskScreen from '@/screens/TaskScreen';
-import { RootStackParamList } from '@/types';
-import CustomDrawerItem from '@/components/CustomDrawerItem';
 import {
     doneAll,
     drawerAllTasks,
     drawerHome,
     drawerImportant,
-    drawerOverdue
+    drawerOverdue,
 } from '@assets/images';
+import WelcomScreen from '@/screens/WelcomScreen';
+import MainScreen from '@/screens/MainScreen';
+import TaskScreen from '@/screens/TaskScreen';
+import { RootStackParamList } from '@/types';
+import CustomDrawerItem from '@/components/CustomDrawerItem';
 
 const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator<RootStackParamList>();

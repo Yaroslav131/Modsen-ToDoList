@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import { getId } from '@/helpingFunctions';
 import {
   icPlus, icBook, icDefault, icSchool, icShopping, icWork, icWorkout,
 } from '@assets/images';
+import * as Yup from 'yup';
+import { getId } from '@/helpingFunctions';
 import { ImagesType, TopicType, addTaskStagesType } from '@/types';
-import * as Yup from "yup";
 
 export const Images: ImagesType = {
   icPlus,
@@ -53,15 +53,22 @@ export const basicTopics: TopicType[] = [
     name: 'Workout',
     color: '#83BC74',
   },
-]
+];
 
 export const topicColors: string[] = ['#5EB0D2', '#BE8972', '#2A8899', '#646FD4', '#83BC74'];
 
 export const welcomTitle = 'Manage your tasks';
 export const welcomDescription = 'Organize, plan, and collaborate on tasks with Modsen todo list.Your busy life deserves this.you can manage checklist and your goal. ';
 
-export const addTaskStages: addTaskStagesType[] = ["AddNameDescriptionImportant", "AddTopic", "AddStartTime", 'AddEndTime', "AddDate", "AddSubtask"];
+export const addTaskStages: addTaskStagesType[] = [
+  'AddNameDescriptionImportant',
+  'AddTopic',
+  'AddStartTime',
+  'AddEndTime',
+  'AddDate',
+  'AddSubtask',
+];
 
-export const addStartTimeTitle = 'Task start time'
-export const addEndTimeTitle = 'Task end time'
-export const addDataTitle = 'Task data'
+export const addStartTimeTitle = 'Task start time';
+export const addEndTimeTitle = 'Task end time';
+export const addDataTitle = 'Task data';

@@ -4,8 +4,8 @@ import React from 'react';
 import { ButtonWrapper, ButtonText } from './styles';
 
 interface DateButtonProps {
-  buttonText: string
-  onPress: () => void
+  buttonText: string;
+  onPress: () => void;
 }
 
 function DateButton({ buttonText, onPress }: DateButtonProps) {

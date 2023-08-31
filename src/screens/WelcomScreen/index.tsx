@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 
-import { welcomImg } from '../../../assets/images';
+import { welcomImg } from '@assets/images';
 import { welcomDescription, welcomTitle } from '@/constants';
 
 import {
@@ -25,9 +25,7 @@ function WelcomScreen({ pressHandler }: WelcomScreenProps) {
       <StyledImage source={welcomImg} />
       <Content>
         <SectionTitle>{welcomTitle}</SectionTitle>
-        <SectionDescription>
-          {welcomDescription}
-        </SectionDescription>
+        <SectionDescription>{welcomDescription}</SectionDescription>
       </Content>
       <StartButton onPress={pressHandler} activeOpacity={0.7}>
         <ButtonText>Get Started</ButtonText>

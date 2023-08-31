@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   buttonText: {
-
     textAlign: 'center',
     color: '#FFF',
     fontFamily: 'jost_regular',
@@ -40,10 +39,9 @@ export const styles = StyleSheet.create({
     fontFamily: 'jost_regular',
     fontSize: 20,
   },
-  deleteImg:
-  {
+  deleteImg: {
     width: screenWidth / 15,
 
-    height: screenWidth / 15
-  }
+    height: screenWidth / 15,
+  },
 });

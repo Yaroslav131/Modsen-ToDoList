@@ -11,4 +11,3 @@ export const StyledRightEllipse = styled(Image)`
   resize-mode: stretch;
   z-index: 2;
 `;
-

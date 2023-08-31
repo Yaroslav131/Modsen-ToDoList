@@ -2,25 +2,27 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import TopicButton from './TopicButton';
-import { ImageName, StackNavigation, TaskType, topicButtonType } from '@/types';
-import { useAppSelector } from '@/hooks';
 import { useNavigation } from '@react-navigation/native';
+import TopicButton from './TopicButton';
+import {
+  ImageName, StackNavigation, TaskType, topicButtonType,
+} from '@/types';
+import { useAppSelector } from '@/hooks';
 import { filterTasksByTopic } from '@/helpingFunctions';
 
 interface TopicButtonType {
   id: string;
   onPress: () => void;
-  type: topicButtonType
+  type: topicButtonType;
   buttonText?: string;
-  taskCounter?: number
-  buttonColor?: string
-  imageSource: ImageName
+  taskCounter?: number;
+  buttonColor?: string;
+  imageSource: ImageName;
 }
 
 interface TopicFlatListProps {
-  tasks: TaskType[]
-  toggleAddTopicModal: () => void
+  tasks: TaskType[];
+  toggleAddTopicModal: () => void;
 }
 
 function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
@@ -28,9 +30,8 @@ function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
   const topics = useAppSelector((state) => state.topics.value);
   const navigation = useNavigation<StackNavigation>();
 
-
   const addButtonData: TopicButtonType = {
-    id: "",
+    id: '',
     type: 'add',
     onPress: toggleAddTopicModal,
     imageSource: 'icPlus',
@@ -38,21 +39,25 @@ function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
 
   useEffect(() => {
     const customFilters: TopicButtonType[] = topics.map((x) => {
-      const topicTasks = filterTasksByTopic(tasks, x.id) 
-      return (
-        {
-          id: x.id,
-          type: x.type,
-          onPress: () => { navigation.navigate("TaskScreen", { type: ["Topic", { id: x.id }], title: `${x.name} tasks` }) },
-          buttonText: x.name,
-          imageSource: x.imageSource,
-          buttonColor: x.color,
-          taskCounter: topicTasks.length
-        } as TopicButtonType)
+      const topicTasks = filterTasksByTopic(tasks, x.id);
+      return {
+        id: x.id,
+        type: x.type,
+        onPress: () => {
+          navigation.navigate('TaskScreen', {
+            type: ['Topic', { id: x.id }],
+            title: `${x.name} tasks`,
+          });
+        },
+        buttonText: x.name,
+        imageSource: x.imageSource,
+        buttonColor: x.color,
+        taskCounter: topicTasks.length,
+      } as TopicButtonType;
     });
 
     setTopicButtons(customFilters.concat([addButtonData]));
-  }, [topics,tasks]);
+  }, [topics, tasks]);
 
   const renderItem: ListRenderItem<TopicButtonType> = ({ item }) => (
     <TopicButton
@@ -68,7 +73,6 @@ function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
 
   const keyExtractor = (item: TopicButtonType, index: number) => index.toString();
   return (
-
     <FlatList
       data={topicButtons}
       renderItem={renderItem}
@@ -76,7 +80,6 @@ function TopicFlatList({ toggleAddTopicModal, tasks }: TopicFlatListProps) {
       numColumns={3}
       showsVerticalScrollIndicator={false}
     />
-
   );
 }
 

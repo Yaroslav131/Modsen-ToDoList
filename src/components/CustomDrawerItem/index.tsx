@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, Text, Image, ImageProps } from 'react-native';
+import { ImageProps } from 'react-native';
+import { Container, Icon, Title } from './styles';
 
 interface CustomDrawerItemProps {
-    icon: ImageProps
-    title: string
+  icon: ImageProps;
+  title: string;
 }
 
-const CustomDrawerItem = ({ icon, title }: CustomDrawerItemProps) => {
-    return (
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Image source={icon} style={{ width: 24, height: 24 }} />
-            <Text style={{ marginLeft: 10 }}>{title}</Text>
-        </View>
-    );
-};
+function CustomDrawerItem({ icon, title }: CustomDrawerItemProps) {
+  return (
+    <Container>
+      <Icon source={icon} />
+      <Title>{title}</Title>
+    </Container>
+  );
+}
 
 export default CustomDrawerItem;
