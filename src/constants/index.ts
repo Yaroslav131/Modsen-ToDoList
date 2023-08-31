@@ -72,3 +72,5 @@ export const addTaskStages: addTaskStagesType[] = [
 export const addStartTimeTitle = 'Task start time';
 export const addEndTimeTitle = 'Task end time';
 export const addDataTitle = 'Task data';
+
+export const STORAGE_KEY = 'isWellcomSreenCheck';
