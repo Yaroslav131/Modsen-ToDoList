@@ -1,19 +1,19 @@
-import { TouchableOpacity } from 'react-native';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const ButtonWrapper = styled(TouchableOpacity)`
-  elevation: 5;
-  border-color: #646fd4;
-  background-color: #fff;
-  border-width: 2px;
-  border-radius: 20px;
-  padding-vertical: 2px;
-  width: 100px;
-  align-items: center;
-`;
-
-export const ButtonText = styled.Text`
-  color: #7d7d7d;
-  font-family: jost_regular;
-  font-size: 22px;
-`;
+export const styles = StyleSheet.create({
+  buttonWrapper: {
+    elevation: 5,
+    borderColor: '#646fd4',
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderRadius: 20,
+    paddingVertical: 2,
+    width: 100,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#7d7d7d',
+    fontFamily: 'jost_regular',
+    fontSize: 22,
+  },
+});

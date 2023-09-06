@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
 import { useNavigation } from '@react-navigation/native';

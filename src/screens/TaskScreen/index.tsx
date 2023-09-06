@@ -1,8 +1,6 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity, Image, Dimensions,
+  View, Text, TouchableOpacity, Image,
 } from 'react-native';
 import {
   backArrow, closeDone, ic_plus, openDone,
@@ -15,26 +13,22 @@ import { filterTasksByCompletion, getSortedTasks } from '@/helpingFunctions';
 import ModalContainer from '@/components/ModalContainer';
 import TaskModal from '@/components/Modals/TaskModal';
 import { openModal } from '@/slices/modalSlice';
-import { RootRouteProps, StackNavigation, TaskType } from '@/types';
+import { RootRouteProps, StackNavigation } from '@/types';
 import Header from '@/components/Header';
+import { styles } from './styles';
 
 function TaskScreen() {
   const [isDoneTasksOpen, setIsDoneTasksOpen] = useState(false);
-  const [passedTasks, setPassedTasks] = useState<TaskType[]>([]);
+
   const modalVisability = useAppSelector((state) => state.modal.isVisible);
   const tasks = useAppSelector((state) => state.tasks.value);
   const route = useRoute<RootRouteProps<'TaskScreen'>>();
-
   const dispatch = useAppDispatch();
-
   const navigation = useNavigation<StackNavigation>();
 
+  const passedTasks = useMemo(() => getSortedTasks(tasks, route.params.type), [tasks]);
   const completedTasks = filterTasksByCompletion(passedTasks, true);
   const notCompletedTasks = filterTasksByCompletion(passedTasks, false);
-
-  useEffect(() => {
-    setPassedTasks(getSortedTasks(tasks, route.params.type));
-  }, [tasks]);
 
   function tonggleDoneTasks() {
     setIsDoneTasksOpen(!isDoneTasksOpen);
@@ -58,7 +52,7 @@ function TaskScreen() {
         <View style={styles.scrollContainer}>
           {!isDoneTasksOpen && <TaskFlatList tasks={notCompletedTasks} />}
 
-          <View>
+          <View style={styles.separatContainer}>
             <View style={styles.horizontalLine} />
             <View style={[styles.doneTaskTongleContainer]}>
               <Text style={styles.doneTaskTongText}>
@@ -88,75 +82,5 @@ function TaskScreen() {
     </TasksBackgroundLayout>
   );
 }
-
-const { height, width } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  buttonImage: {
-    resizeMode: 'stretch',
-  },
-  titleText: {
-    fontSize: 28,
-    color: '#FFF',
-    fontFamily: 'jost_semiBold',
-  },
-  backButton: {
-    justifyContent: 'center',
-    width: height * 0.03,
-    height: height * 0.03,
-    position: 'absolute',
-    left: 0,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: height * 0.09,
-  },
-  scrollContainer: {
-    flex: 5,
-  },
-
-  container: {
-    width: '90%',
-    height: height * 0.9,
-    alignSelf: 'center',
-  },
-  addButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width * 0.14,
-    height: width * 0.14,
-    backgroundColor: '#646FD4',
-    borderRadius: 100,
-    zIndex: 20,
-  },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  addButtonImage: {
-    width: '80%',
-    height: '80%',
-  },
-  doneTaskTongText: {
-    fontSize: 18,
-    color: '#363636',
-    fontFamily: 'jost_regular',
-  },
-  doneTaskTongleContainer: {
-    paddingHorizontal: 3,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-
-  horizontalLine: {
-    borderBottomWidth: 2,
-    borderBottomColor: '#888',
-    marginVertical: 10,
-  },
-});
 
 export default TaskScreen;

@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
+import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 import { styles } from './styles';
 
 interface SettingButtonProps {
@@ -9,10 +9,8 @@ interface SettingButtonProps {
 
 function SettingButton(props: SettingButtonProps) {
   return (
-    <TouchableOpacity onPress={() => {}} style={styles.settingButton}>
-      <Text onPress={props.onClick} style={styles.settingButtonText}>
-        {props.title}
-      </Text>
+    <TouchableOpacity style={styles.settingButtonWrapper} onPress={props.onClick}>
+      <Text style={styles.settingButtonText}>{props.title}</Text>
     </TouchableOpacity>
   );
 }

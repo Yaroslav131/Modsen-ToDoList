@@ -1,6 +1,6 @@
-import { FlatList, ListRenderItem, View } from 'react-native';
-import { SubTaskType, TaskType } from '@/types';
-import Task from '../Task';
+import { FlatList, ListRenderItem } from 'react-native';
+
+import { SubTaskType } from '@/types';
 import SubTask from '../SubTask';
 
 interface SubTaskFlatListProps {

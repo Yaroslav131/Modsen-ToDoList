@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SubTaskType } from '@/types';
 

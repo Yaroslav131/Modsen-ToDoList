@@ -1,14 +1,8 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React from 'react';
-import { ImageProps } from 'react-native';
-
 import {
-  ButtonImage,
-  HeaderContainer,
-  LeftButton,
-  TitleText,
-} from './styles';
+  ImageProps, View, Text, TouchableOpacity, StyleSheet, Dimensions, Image,
+} from 'react-native';
+import { styles } from './styles';
 
 interface HeaderProps {
   onPress: () => void;
@@ -18,12 +12,12 @@ interface HeaderProps {
 
 function Header({ onPress, leftImage, title }: HeaderProps) {
   return (
-    <HeaderContainer>
-      <LeftButton onPress={onPress}>
-        <ButtonImage source={leftImage} />
-      </LeftButton>
-      <TitleText>{title}</TitleText>
-    </HeaderContainer>
+    <View style={styles.headerContainer}>
+      <TouchableOpacity onPress={onPress} style={styles.leftButton}>
+        <Image source={leftImage} style={styles.buttonImage} />
+      </TouchableOpacity>
+      <Text style={styles.titleText}>{title}</Text>
+    </View>
   );
 }
 

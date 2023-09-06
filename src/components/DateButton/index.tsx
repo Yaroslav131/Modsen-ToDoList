@@ -1,7 +1,6 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React from 'react';
-import { ButtonWrapper, ButtonText } from './styles';
+import { TouchableOpacity, Text } from 'react-native';
+import { styles } from './styles';
 
 interface DateButtonProps {
   buttonText: string;
@@ -10,9 +9,9 @@ interface DateButtonProps {
 
 function DateButton({ buttonText, onPress }: DateButtonProps) {
   return (
-    <ButtonWrapper onPress={onPress} activeOpacity={0.5}>
-      <ButtonText>{buttonText}</ButtonText>
-    </ButtonWrapper>
+    <TouchableOpacity style={styles.buttonWrapper} onPress={onPress} activeOpacity={0.5}>
+      <Text style={styles.buttonText}>{buttonText}</Text>
+    </TouchableOpacity>
   );
 }
 

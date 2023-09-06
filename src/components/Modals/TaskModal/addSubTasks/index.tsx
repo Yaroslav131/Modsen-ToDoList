@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { SubTaskType } from '@/types';
 import SubTaskFlatList from '@/components/SubTaskFlatList';
 import { TextInput, TitleText } from '../../styles';
-import { AddButton, AddButtonImage, Container } from './styles';
+import { AddButton, AddButtonImage } from './styles';
 
 const validationSchema = Yup.object().shape({
   subTaskName: Yup.string().required('Input is required'),
@@ -33,7 +33,7 @@ function AddSubTask({ subTasks, onAddSubTasks, onDeleteSubTasks }: AddSubTaskPro
   };
 
   return (
-    <Container>
+    <>
       <TitleText>Subtasks</TitleText>
       <SubTaskFlatList isEdited onDeleteSubTasks={onDeleteSubTasks} tasks={subTasks} />
       {validationError !== '' && <ErrorText>{validationError}</ErrorText>}
@@ -46,7 +46,7 @@ function AddSubTask({ subTasks, onAddSubTasks, onDeleteSubTasks }: AddSubTaskPro
       <AddButton onPress={handleAddAddSubTask}>
         <AddButtonImage source={ic_plus} />
       </AddButton>
-    </Container>
+    </>
   );
 }
 

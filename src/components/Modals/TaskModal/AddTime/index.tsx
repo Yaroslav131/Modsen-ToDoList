@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { TitleText } from '../../styles';
+import { DatePikerType } from '@/types';
 
 import { Container, StyledDatePicker } from './styles';
-import { DatePikerType } from '@/types';
 
 interface AddTimeProps {
   titleText: string;

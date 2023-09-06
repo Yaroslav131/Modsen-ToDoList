@@ -1,14 +1,34 @@
-import { Dimensions, Image } from 'react-native';
-import styled from 'styled-components/native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-export const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('window').width;
 
-export const StyledRightEllipse = styled(Image)`
-  position: absolute;
-  right: -15px;
-  top: -15px;
-  height: ${windowWidth / 1.4}px;
-  width: ${windowWidth / 1.4}px;
-  resize-mode: stretch;
-  z-index: 2;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  leftEllipse: {
+    position: 'absolute',
+    left: -15,
+    top: -15,
+    height: windowWidth / 1.7,
+    width: windowWidth / 1.7,
+    resizeMode: 'stretch',
+    zIndex: 1,
+  },
+  rightEllipse: {
+    position: 'absolute',
+    right: -15,
+    top: -15,
+    height: windowWidth / 1.4,
+    width: windowWidth / 1.4,
+    resizeMode: 'stretch',
+    zIndex: 2,
+  },
+  childrenContainer: {
+    flex: 1,
+    zIndex: 5,
+  },
+});

@@ -1,9 +1,77 @@
-import styled from 'styled-components/native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-const Container = styled.View`
-  width: 90%;
-  hight: 100%;
-  align-self: center;
-`;
+const { height, width } = Dimensions.get('window');
 
-export default Container;
+export const styles = StyleSheet.create({
+  buttonImage: {
+    resizeMode: 'stretch',
+  },
+  titleText: {
+    fontSize: 28,
+    color: '#FFF',
+    fontFamily: 'jost_semiBold',
+  },
+  backButton: {
+    justifyContent: 'center',
+    width: height * 0.03,
+    height: height * 0.03,
+    position: 'absolute',
+    left: 0,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: height * 0.09,
+  },
+  scrollContainer: {
+    flex: 5,
+  },
+
+  container: {
+    width: '100%',
+    height: height * 0.9,
+    alignSelf: 'center',
+  },
+  addButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: width * 0.14,
+    height: width * 0.14,
+    backgroundColor: '#646FD4',
+    borderRadius: 100,
+    zIndex: 20,
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addButtonImage: {
+    width: '80%',
+    height: '80%',
+  },
+  doneTaskTongText: {
+    fontSize: 18,
+    color: '#363636',
+    fontFamily: 'jost_regular',
+  },
+  doneTaskTongleContainer: {
+    paddingHorizontal: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  horizontalLine: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#888',
+    marginVertical: 10,
+  },
+
+  separatContainer:
+  {
+    width: '90%',
+    alignSelf: 'center',
+  },
+});

@@ -1,22 +1,12 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
-
 import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { View, Text } from 'react-native';
 import { burgerMenu } from '@assets/images';
 import MainBackgroundLayout from '@/components/BackgroundWrappers/MainBackgroundLayout';
 import { filtertoDoToday, formatDate } from '@/helpingFunctions';
 import DateButton from '@/components/DateButton';
 import TopicFlatList from '@/components/TopicFlatList';
-
-import {
-  Container,
-  DailyTaskText,
-  ChangeableTaskText,
-  DateText,
-  DateButtonContainer,
-  BottomContainer,
-} from './styles';
+import { styles } from './styles';
 import ModalContainer from '@/components/ModalContainer';
 import TopicModal from '@/components/Modals/TopicModal';
 import { useAppDispatch, useAppSelector } from '@/hooks';
@@ -24,6 +14,7 @@ import { openModal } from '@/slices/modalSlice';
 import SearchTask from '@/components/SearchTask';
 import Header from '@/components/Header';
 import { StackNavigation } from '@/types';
+import { LocalNotification } from '@/services/LocalPushController';
 
 function MainScreen() {
   const [currentDate, setCurrentDate] = useState(formatDate(new Date()));
@@ -48,6 +39,10 @@ function MainScreen() {
     dispatch(openModal());
   }
 
+  const handleButtonPress = () => {
+    LocalNotification();
+  };
+
   return (
     <MainBackgroundLayout>
       <Header
@@ -57,26 +52,26 @@ function MainScreen() {
           navigation.dispatch(DrawerActions.toggleDrawer());
         }}
       />
-      <Container>
-        <DailyTaskText>
+      <View style={styles.container}>
+        <Text style={styles.dailyTaskText}>
+          You have
           {' '}
-          you have
-          {' '}
-          <ChangeableTaskText>
+          <Text style={styles.changeableTaskText}>
             {toDoToday.length}
             {' '}
             task
             {toDoToday.length !== 1 ? 's' : ''}
-          </ChangeableTaskText>
+          </Text>
           {' '}
           today!
-        </DailyTaskText>
-        <DateText>{currentDate}</DateText>
-        <SearchTask tasks={tasks} />
+        </Text>
+        <Text style={styles.dateText}>{currentDate}</Text>
+        <SearchTask />
 
-        <DateButtonContainer>
+        <View style={styles.dateButtonContainer}>
           <DateButton
             onPress={() => {
+              handleButtonPress();
               navigation.navigate('TaskScreen', { type: 'Today', title: "Today's tasks" });
             }}
             buttonText="Today"
@@ -93,12 +88,12 @@ function MainScreen() {
             }}
             buttonText="Month"
           />
-        </DateButtonContainer>
+        </View>
 
-        <BottomContainer>
+        <View style={styles.bottomContainer}>
           <TopicFlatList tasks={tasks} toggleAddTopicModal={handleToggleAddTopicModal} />
-        </BottomContainer>
-      </Container>
+        </View>
+      </View>
 
       <ModalContainer isModalVisible={modalVisability} toggleModal={handleToggleAddTopicModal}>
         <TopicModal />

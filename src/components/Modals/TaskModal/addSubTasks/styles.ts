@@ -3,10 +3,6 @@ import { Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-export const Container = styled.View`
-  flex: 1;
-`;
-
 export const AddButton = styled.TouchableOpacity`
   margin-top: 15px;
   align-self: center;

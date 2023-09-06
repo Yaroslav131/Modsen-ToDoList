@@ -1,13 +1,17 @@
-import { Dimensions, View } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-import styled from 'styled-components/native';
+const { height } = Dimensions.get('window');
 
-export const { height } = Dimensions.get('window');
-
-const ErrorContainer = styled(View)`
-  height: ${height}px;
-  justify-content: center;
-  align-items: center;
-`;
-
-export default ErrorContainer;
+export const styles = StyleSheet.create({
+  errorContainer: {
+    height,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    fontFamily: 'jost_semiBold',
+    textAlign: 'center',
+    fontSize: 24,
+    color: '#363636',
+  },
+});

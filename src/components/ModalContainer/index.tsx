@@ -1,9 +1,8 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import Modal from 'react-native-modal';
-import { TouchableWithoutFeedback } from 'react-native';
-import { Container, BlurViewContainer } from './styles';
+import { TouchableWithoutFeedback, View } from 'react-native';
+import { BlurView } from '@react-native-community/blur';
+import { styles } from './styles';
 
 interface ModalContainerProps {
   isModalVisible: boolean;
@@ -13,7 +12,7 @@ interface ModalContainerProps {
 
 function ModalContainer({ isModalVisible, toggleModal, children }: ModalContainerProps) {
   return (
-    <Container>
+    <View style={styles.container}>
       <Modal
         isVisible={isModalVisible}
         backdropOpacity={0.7}
@@ -23,11 +22,11 @@ function ModalContainer({ isModalVisible, toggleModal, children }: ModalContaine
         useNativeDriver={false}
       >
         <TouchableWithoutFeedback onPress={toggleModal}>
-          <BlurViewContainer blurType="light" blurAmount={10} />
+          <BlurView style={styles.blurViewContainer} blurType="light" blurAmount={10} />
         </TouchableWithoutFeedback>
         {children}
       </Modal>
-    </Container>
+    </View>
   );
 }
 

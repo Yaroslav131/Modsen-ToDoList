@@ -1,11 +1,8 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React, { Component } from 'react';
-
+import { View, Text } from 'react-native';
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
-import ErrorContainer from './styles';
 import MainBackgroundLayout from '../../components/BackgroundWrappers/MainBackgroundLayout';
-import { StyledText } from '../../../globalStyles';
+import { styles } from './styles';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -30,20 +27,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (hasError) {
       return (
         <MainBackgroundLayout>
-          <ErrorContainer>
-            <StyledText fontSize="24px" textColor="#363636">
-              Oops, Something went wrong.
-            </StyledText>
-            <StyledText fontSize="24px" textColor="#363636">
-              Try again later :)
-            </StyledText>
-            <StyledText fontSize="24px" textColor="#363636">
-              Error:
-            </StyledText>
-            <StyledText fontSize="24px" textColor="#363636">
-              {error && error.toString()}
-            </StyledText>
-          </ErrorContainer>
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>Oops, Something went wrong.</Text>
+            <Text style={styles.errorText}>Try again later :)</Text>
+            <Text style={styles.errorText}>Error:</Text>
+            <Text style={styles.errorText}>{error && error.toString()}</Text>
+          </View>
         </MainBackgroundLayout>
       );
     }

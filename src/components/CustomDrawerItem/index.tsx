@@ -1,6 +1,8 @@
 import React from 'react';
-import { ImageProps } from 'react-native';
-import { Container, Icon, Title } from './styles';
+import {
+  ImageProps, Image, Text, View,
+} from 'react-native';
+import { styles } from './styles';
 
 interface CustomDrawerItemProps {
   icon: ImageProps;
@@ -9,10 +11,10 @@ interface CustomDrawerItemProps {
 
 function CustomDrawerItem({ icon, title }: CustomDrawerItemProps) {
   return (
-    <Container>
-      <Icon source={icon} />
-      <Title>{title}</Title>
-    </Container>
+    <View style={styles.container}>
+      <Image source={icon} style={styles.icon} />
+      <Text style={styles.title}>{title}</Text>
+    </View>
   );
 }
 

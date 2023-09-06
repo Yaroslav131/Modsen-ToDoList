@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { deleteIcon } from '@assets/images';
 import { ImageName, topicButtonType } from '@/types';
 import { Images } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch } from '@/hooks';
 import { deleteTopic } from '@/slices/topicSlice';
 
 import { deleteTopicForTasks } from '@/slices/taskSlice';

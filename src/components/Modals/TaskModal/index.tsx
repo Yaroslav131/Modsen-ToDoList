@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-
 import * as Yup from 'yup';
+
 import {
   ContentContainer, ButtonContainer, ButtonText, CustomButton,
 } from '../styles';
@@ -19,7 +19,7 @@ import { addTask, changeTask } from '@/slices/taskSlice';
 import { addSubTask } from '@/slices/subTaskSlice';
 import { closeModal } from '@/slices/modalSlice';
 
-export const validationSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   taskName: Yup.string().required('Input is required'),
 });
 
@@ -28,9 +28,7 @@ function TaskModal() {
   const dispatch = useAppDispatch();
 
   const modalParams = useAppSelector((state) => state.modal.modalParams);
-
   const sortTasks = useAppSelector((state) => state.tasks.value).find((x) => x.id === modalParams);
-
   const taskOnChange = modalParams ? sortTasks : null;
 
   const [taskName, setTaskName] = useState(taskOnChange ? taskOnChange.title : '');
@@ -55,8 +53,76 @@ function TaskModal() {
       : [],
   );
   const currentTaskId = useRef(taskOnChange ? taskOnChange.id : getId());
-
   const currentStage: addTaskStagesType = addTaskStages[currentStageId];
+
+  let content;
+  switch (currentStage) {
+    case 'AddNameDescriptionImportant':
+      content = (
+        <AddNameDescriptionImportant
+          validationError={nameValidationError}
+          description={description}
+          isImportant={isImportant}
+          handleToggleImportent={handleToggleImportent}
+          onDescriptionTextChange={handleOnDescriptionChange}
+          onNameTextChange={handleOnNameChange}
+          taskName={taskName}
+        />
+      );
+      break;
+
+    case 'AddTopic':
+      content = (
+        <AddTopic
+          handleOnTopicChosen={handleOnTopicChosen}
+          chosenId={topicId}
+        />
+      );
+      break;
+
+    case 'AddStartTime':
+      content = (
+        <AddDataTime
+          mode="time"
+          titleText={addStartTimeTitle}
+          onStartTimeChange={handleOnStartTimeChange}
+          taskStartTime={taskStartTime}
+        />
+      );
+      break;
+
+    case 'AddEndTime':
+      content = (
+        <AddDataTime
+          mode="time"
+          titleText={addEndTimeTitle}
+          onStartTimeChange={handleOnEndTimeChange}
+          taskStartTime={taskEndTime}
+        />
+      );
+      break;
+
+    case 'AddDate':
+      content = (
+        <AddDataTime
+          mode="date"
+          titleText={addDataTitle}
+          onStartTimeChange={handleOnDataChange}
+          taskStartTime={taskEndTime}
+        />
+      );
+      break;
+
+    default:
+      content = (
+        <AddSubTask
+          onAddSubTasks={handleAddsubTasks}
+          onDeleteSubTasks={handleDeletesubTasks}
+          subTasks={subTasks}
+        />
+      );
+      break;
+  }
 
   function handleAddTask() {
     const task: TaskType = {
@@ -140,46 +206,7 @@ function TaskModal() {
 
   return (
     <ContentContainer>
-      {currentStage == 'AddNameDescriptionImportant' ? (
-        <AddNameDescriptionImportant
-          validationError={nameValidationError}
-          description={description}
-          isImportant={isImportant}
-          handleToggleImportent={handleToggleImportent}
-          onDescriptionTextChange={handleOnDescriptionChange}
-          onNameTextChange={handleOnNameChange}
-          taskName={taskName}
-        />
-      ) : currentStage == 'AddTopic' ? (
-        <AddTopic handleOnTopicChosen={handleOnTopicChosen} chosenId={topicId} />
-      ) : currentStage == 'AddStartTime' ? (
-        <AddDataTime
-          mode="time"
-          titleText={addStartTimeTitle}
-          onStartTimeChange={handleOnStartTimeChange}
-          taskStartTime={taskStartTime}
-        />
-      ) : currentStage == 'AddEndTime' ? (
-        <AddDataTime
-          mode="time"
-          titleText={addEndTimeTitle}
-          onStartTimeChange={handleOnEndTimeChange}
-          taskStartTime={taskEndTime}
-        />
-      ) : currentStage == 'AddDate' ? (
-        <AddDataTime
-          mode="date"
-          titleText={addDataTitle}
-          onStartTimeChange={handleOnDataChange}
-          taskStartTime={taskEndTime}
-        />
-      ) : (
-        <AddSubTask
-          onAddSubTasks={handleAddsubTasks}
-          onDeleteSubTasks={handleDeletesubTasks}
-          subTasks={subTasks}
-        />
-      )}
+      {content}
 
       <ButtonContainer>
         {currentStageId === 0 ? (

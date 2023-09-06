@@ -14,7 +14,7 @@ import { closeModal } from '@/slices/modalSlice';
 import { addTopic } from '@/slices/topicSlice';
 import { useAppDispatch } from '@/hooks';
 
-export const validationSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   name: Yup.string().required('Input is required'),
 });
 

@@ -1,7 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';

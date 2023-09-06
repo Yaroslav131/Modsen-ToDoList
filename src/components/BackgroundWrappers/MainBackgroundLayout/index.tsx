@@ -1,10 +1,7 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import { Image, View } from 'react-native';
 import { leftEllipse, rightEllipse } from '@assets/images';
-import { StyledRightEllipse } from './styles';
-import { Container, StyledLeftEllipse, ChildrenContainer } from '../styles';
+import { styles } from './styles';
 
 interface MainBackgroundLayoutProps {
   children: React.ReactNode;
@@ -12,11 +9,11 @@ interface MainBackgroundLayoutProps {
 
 function MainBackgroundLayout({ children }: MainBackgroundLayoutProps) {
   return (
-    <Container>
-      <StyledLeftEllipse source={leftEllipse} />
-      <StyledRightEllipse source={rightEllipse} />
-      <ChildrenContainer>{children}</ChildrenContainer>
-    </Container>
+    <View style={styles.container}>
+      <Image source={leftEllipse} style={styles.leftEllipse} />
+      <Image source={rightEllipse} style={styles.rightEllipse} />
+      <View style={styles.childrenContainer}>{children}</View>
+    </View>
   );
 }
 

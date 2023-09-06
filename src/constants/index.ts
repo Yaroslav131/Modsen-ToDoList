@@ -1,9 +1,12 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import {
-  icPlus, icBook, icDefault, icSchool, icShopping, icWork, icWorkout,
+  icPlus,
+  icBook,
+  icDefault,
+  icSchool,
+  icShopping,
+  icWork,
+  icWorkout,
 } from '@assets/images';
-import * as Yup from 'yup';
 import { getId } from '@/helpingFunctions';
 import { ImagesType, TopicType, addTaskStagesType } from '@/types';
 

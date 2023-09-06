@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '@/types';
 
@@ -24,6 +21,7 @@ const tasksSlice = createSlice({
       const updatedTaskIndex = state.value.findIndex((task) => task.id === action.payload);
       if (updatedTaskIndex !== -1) {
         const { isCompleted } = state.value[updatedTaskIndex];
+
         state.value[updatedTaskIndex].isCompleted = !isCompleted;
       }
     },

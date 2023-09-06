@@ -1,15 +1,15 @@
-import { styled } from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const Container = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const Icon = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
-
-export const Title = styled.Text`
-  margin-left: 10px;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  title: {
+    marginLeft: 10,
+  },
+});

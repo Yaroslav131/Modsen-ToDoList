@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface modalSliceState {

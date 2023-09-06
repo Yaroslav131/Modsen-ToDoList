@@ -1,20 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
+import {
+  View, Text, TextInput, TouchableOpacity, Image,
+} from 'react-native';
 
 import { searchIcon } from '@assets/images';
-import { ErrorText } from '@globalStyles/index';
 import { StackNavigation } from '@/types';
+import { styles } from './styles';
 
-import {
-  SearchButton,
-  SearchContainer,
-  SearchInput,
-  SearchImage,
-  SearchFieldContainer,
-} from './styles';
-
-export const validationSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   inputText: Yup.string().required('Input is required'),
 });
 
@@ -38,21 +33,22 @@ function SearchTask() {
   };
 
   return (
-    <SearchContainer>
-      {validationError !== '' && <ErrorText>{validationError}</ErrorText>}
-      <SearchFieldContainer>
-        <SearchButton onPress={handleSubmit}>
-          <SearchImage source={searchIcon} />
-        </SearchButton>
+    <View style={styles.searchContainer}>
+      {validationError !== '' && <Text style={styles.errorText}>{validationError}</Text>}
+      <View style={styles.searchFieldContainer}>
+        <TouchableOpacity style={styles.searchButton} onPress={handleSubmit}>
+          <Image style={styles.searchImage} source={searchIcon} />
+        </TouchableOpacity>
 
-        <SearchInput
+        <TextInput
+          style={styles.searchInput}
           onSubmitEditing={handleSubmit}
           placeholder="Search tasks"
           value={inputText}
           onChangeText={(text) => setInputText(text)}
         />
-      </SearchFieldContainer>
-    </SearchContainer>
+      </View>
+    </View>
   );
 }
 
