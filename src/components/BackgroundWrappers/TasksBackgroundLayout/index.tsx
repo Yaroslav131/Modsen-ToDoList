@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View } from 'react-native';
-import { leftEllipse, largeRightEllipse } from '@assets/images';
 import { styles } from './styles';
+import { images } from '@/constants';
 
 interface MainBackgroundLayoutProps {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ interface MainBackgroundLayoutProps {
 function MainBackgroundLayout({ children }: MainBackgroundLayoutProps) {
   return (
     <View style={styles.container}>
-      <Image source={leftEllipse} style={styles.leftEllipse} />
-      <Image source={largeRightEllipse} style={styles.rightEllipse} />
+      <Image source={images.leftEllipse} style={styles.leftEllipse} />
+      <Image source={images.largeRightEllipse} style={styles.rightEllipse} />
       <View style={styles.childrenContainer}>{children}</View>
     </View>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 
-import { important, notImportant } from '@assets/images';
+import { images } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
 import { TextInput, TitleText } from '../../styles';
 
@@ -40,7 +40,7 @@ function AddNameDescriptionImportant({
         </NameInputContainer>
         <CheckBox onPress={handleToggleImportent} activeOpacity={0.5}>
           <CheckBoxImage
-            source={isImportant ? important : notImportant}
+            source={isImportant ? images.important : images.notImportant}
             windowWidth={windowWidth}
           />
         </CheckBox>

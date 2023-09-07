@@ -2,13 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {
-  doneAll,
-  drawerAllTasks,
-  drawerHome,
-  drawerImportant,
-  drawerOverdue,
-} from '@assets/images';
+import { images } from '@/constants';
 import TaskScreen from '@/screens/TaskScreen';
 import { RootStackParamList } from '@/types';
 import CustomDrawerItem from '@/components/CustomDrawerItem';
@@ -26,7 +20,7 @@ function Route() {
         <Drawer.Screen
           options={{
             headerShown: false,
-            drawerLabel: () => <CustomDrawerItem icon={drawerHome} title="Home" />,
+            drawerLabel: () => <CustomDrawerItem icon={images.drawerHome} title="Home" />,
           }}
           name="Home"
           component={StackRoute}
@@ -36,7 +30,7 @@ function Route() {
           component={TaskScreen}
           options={{
             headerShown: false,
-            drawerLabel: () => <CustomDrawerItem icon={drawerImportant} title="Important tasks" />,
+            drawerLabel: () => <CustomDrawerItem icon={images.drawerImportant} title="Important tasks" />,
           }}
           initialParams={{ type: 'Important', title: 'Important tasks' }}
         />
@@ -45,7 +39,7 @@ function Route() {
           component={TaskScreen}
           options={{
             headerShown: false,
-            drawerLabel: () => <CustomDrawerItem icon={doneAll} title="Done tasks" />,
+            drawerLabel: () => <CustomDrawerItem icon={images.doneAll} title="Done tasks" />,
           }}
           initialParams={{ type: 'Done', title: 'Done tasks' }}
         />
@@ -54,7 +48,7 @@ function Route() {
           component={TaskScreen}
           options={{
             headerShown: false,
-            drawerLabel: () => <CustomDrawerItem icon={drawerOverdue} title="Overdue tasks" />,
+            drawerLabel: () => <CustomDrawerItem icon={images.drawerOverdue} title="Overdue tasks" />,
           }}
           initialParams={{ type: 'Falled', title: 'Overdue tasks' }}
         />
@@ -63,7 +57,7 @@ function Route() {
           component={TaskScreen}
           options={{
             headerShown: false,
-            drawerLabel: () => <CustomDrawerItem icon={drawerAllTasks} title="All tasks" />,
+            drawerLabel: () => <CustomDrawerItem icon={images.drawerAllTasks} title="All tasks" />,
           }}
           initialParams={{ type: 'All', title: 'All tasks' }}
         />

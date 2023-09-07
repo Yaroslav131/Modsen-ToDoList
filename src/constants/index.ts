@@ -1,24 +1,6 @@
-import {
-  icPlus,
-  icBook,
-  icDefault,
-  icSchool,
-  icShopping,
-  icWork,
-  icWorkout,
-} from '@assets/images';
 import { getId } from '@/helpingFunctions';
 import { ImagesType, TopicType, addTaskStagesType } from '@/types';
 
-export const Images: ImagesType = {
-  icPlus,
-  icBook,
-  icSchool,
-  icShopping,
-  icWork,
-  icWorkout,
-  icDefault,
-};
 
 export const basicTopics: TopicType[] = [
   {
@@ -77,3 +59,46 @@ export const addEndTimeTitle = 'Task end time';
 export const addDataTitle = 'Task data';
 
 export const STORAGE_KEY = 'isWellcomSreenCheck';
+
+export const images = {
+  welcomImg: require('@assets/images/welcomImg.png'),
+  leftEllipse: require('@assets/images/leftEllipse.png'),
+  rightEllipse: require('@assets/images/rightEllipse.png'),
+  largeRightEllipse: require('@assets/images/largeEllipse.png'),
+  searchIcon: require('@assets/images/searchIcon.png'),
+  icBook: require('@assets/images/icBook.png'),
+  icSchool: require('@assets/images/icSchool.png'),
+  icShopping: require('@assets/images/icShopping.png'),
+  icWork: require('@assets/images/icWork.png'),
+  icWorkout: require('@assets/images/icWorkout.png'),
+  icDefault: require('@assets/images/icDefault.png'),
+  icPlus: require('@assets/images/icPlus.png'),
+  deleteIcon: require('@assets/images/deleteIcon.png'),
+  checked: require('@assets/images/ic_checked.png'),
+  optionMenu: require('@assets/images/ic_optionMenu.png'),
+  closeDone: require('@assets/images/closeDone.png'),
+  openDone: require('@assets/images/openDone.png'),
+  ic_plus: require('@assets/images/ic_plus.png'),
+  important: require('@assets/images/important.png'),
+  notImportant: require('@assets/images/notImportant.png'),
+  backArrow: require('@assets/images/backArrow.png'),
+  burgerMenu: require('@assets/images/burgerMenu.png'),
+  drawerdDayly: require('@assets/images/drawerdDayly.png'),
+  drawerImportant: require('@assets/images/drawerImportant.png'),
+  doneAll: require('@assets/images/doneAll.png'),
+  drawerOverdue: require('@assets/images/drawerOverdue.png'),
+  drawerAllTasks: require('@assets/images/drawerAllTasks.png'),
+  drawerHome: require('@assets/images/drawerHome.png'),
+  cancel: require('@assets/images/cancel.png'),
+};
+
+
+export const Images: ImagesType = {
+  icPlus: images.icPlus,
+  icBook: images.icBook,
+  icSchool: images.icSchool,
+  icShopping: images.icShopping,
+  icWork: images.icWork,
+  icWorkout: images.icWorkout,
+  icDefault: images.icDefault,
+};

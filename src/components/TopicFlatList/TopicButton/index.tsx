@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 
-import { deleteIcon } from '@assets/images';
+import { images } from '@/constants';
 import { ImageName, topicButtonType } from '@/types';
 import { Images } from '@/constants';
 import { useAppDispatch } from '@/hooks';
@@ -104,7 +104,7 @@ function TopicButton(props: TopicButtonProps) {
             ],
           },
         ]}
-        source={deleteIcon}
+        source={images.deleteIcon}
       />
     </TouchableOpacity>
   ) : (

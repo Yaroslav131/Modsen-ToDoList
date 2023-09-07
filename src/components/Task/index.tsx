@@ -11,7 +11,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 
-import { checked, optionMenu } from '@assets/images';
+import { images } from '@/constants';
 import { dynamicTextStyles, styles } from './styles';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import SubTaskFlatList from '../SubTaskFlatList';
@@ -99,7 +99,7 @@ function Task({
                   <TouchableOpacity onPress={handleCheck} activeOpacity={0.5} style={styles.checkBox}>
                     <Image
                       style={[styles.checkBoxImage, { display: isCompleted ? 'flex' : 'none' }]}
-                      source={checked}
+                      source={images.checked}
                     />
                   </TouchableOpacity>
 
@@ -116,7 +116,7 @@ function Task({
 
               <View style={styles.optionMenuContainer}>
                 <TouchableOpacity onPress={handleTogglSettingVisiblety}>
-                  <Image style={styles.optionMenuImage} source={optionMenu} />
+                  <Image style={styles.optionMenuImage} source={images.optionMenu} />
                 </TouchableOpacity>
               </View>
             </View>

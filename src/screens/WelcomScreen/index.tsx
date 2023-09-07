@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { welcomImg } from '@assets/images';
+import { images } from '@/constants';
 import { welcomDescription, welcomTitle } from '@/constants';
 
 import {
@@ -20,7 +20,7 @@ interface WelcomScreenProps {
 function WelcomScreen({ pressHandler }: WelcomScreenProps) {
   return (
     <Container>
-      <StyledImage source={welcomImg} />
+      <StyledImage source={images.welcomImg} />
       <Content>
         <SectionTitle>{welcomTitle}</SectionTitle>
         <SectionDescription>{welcomDescription}</SectionDescription>
