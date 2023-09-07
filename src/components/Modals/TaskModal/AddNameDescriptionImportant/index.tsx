@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 
 import { images } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
-import { TextInput, TitleText } from '../../styles';
+import { TextInput, TitleText } from '@/components/Modals/styles';
 
 import {
   CheckBox, CheckBoxImage, Container, NameInputContainer,

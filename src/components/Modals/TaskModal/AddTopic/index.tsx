@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { TitleText } from '../../styles';
+import { TitleText } from '@/components/Modals/styles';
 import { useAppSelector } from '@/hooks';
 import { TopicType } from '@/types';
 import {

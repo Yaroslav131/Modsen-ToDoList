@@ -4,7 +4,7 @@ import { ErrorText } from '@globalStyles/index';
 import * as Yup from 'yup';
 import { SubTaskType } from '@/types';
 import SubTaskFlatList from '@/components/SubTaskFlatList';
-import { TextInput, TitleText } from '../../styles';
+import { TextInput, TitleText } from '@/components/Modals/styles';
 import { AddButton, AddButtonImage } from './styles';
 
 const validationSchema = Yup.object().shape({
