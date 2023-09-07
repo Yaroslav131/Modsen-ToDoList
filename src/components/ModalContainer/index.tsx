@@ -17,7 +17,7 @@ function ModalContainer({ isModalVisible, toggleModal, children }: ModalContaine
         isVisible={isModalVisible}
         backdropOpacity={0.7}
         onBackdropPress={toggleModal}
-        style={{ margin: 0, justifyContent: 'center' }}
+        style={styles.modalStyles}
         avoidKeyboard
         useNativeDriver={false}
       >

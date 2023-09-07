@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  modalStyles: {
+    margin: 0,
+    justifyContent: 'center'
+  },
   blurViewContainer: {
     position: 'absolute',
     top: 0,
