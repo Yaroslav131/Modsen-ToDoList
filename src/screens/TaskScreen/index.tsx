@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { images } from '@/constants';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import TasksBackgroundLayout from '@/components/BackgroundWrappers/TasksBackgroundLayout';
+import BackgroundLayout from '@/components/BackgroundLayout';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import TaskFlatList from '@/components/TaskFlatList';
 import { filterTasksByCompletion, getSortedTasks } from '@/helpingFunctions';
@@ -37,7 +37,10 @@ function TaskScreen() {
   }
 
   return (
-    <TasksBackgroundLayout>
+    <BackgroundLayout
+      leftImage={images.leftEllipse}
+      rightImage={images.largeRightEllipse}
+      isRightImageLarge={true}>
       <Header
         title={route.params.title}
         leftImage={images.backArrow}
@@ -77,7 +80,7 @@ function TaskScreen() {
       <ModalContainer isModalVisible={modalVisability} toggleModal={handleTogglModalVisiblety}>
         <TaskModal />
       </ModalContainer>
-    </TasksBackgroundLayout>
+    </BackgroundLayout>
   );
 }
 

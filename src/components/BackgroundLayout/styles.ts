@@ -18,6 +18,15 @@ export const styles = StyleSheet.create({
     resizeMode: 'stretch',
     zIndex: 1,
   },
+  rightLargeEllipse: {
+    position: 'absolute',
+    right: -15,
+    top: -15,
+    width: windowWidth / 1.4,
+    resizeMode: 'stretch',
+    zIndex: 2,
+  },
+
   rightEllipse: {
     position: 'absolute',
     right: -15,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { View, Text } from 'react-native';
 import { images } from '@/constants';
-import MainBackgroundLayout from '@/components/BackgroundWrappers/MainBackgroundLayout';
+import BackgroundLayout from '@/components/BackgroundLayout';
 import { filtertoDoToday, formatDate } from '@/helpingFunctions';
 import DateButton from '@/components/DateButton';
 import TopicFlatList from '@/components/TopicFlatList';
@@ -40,7 +40,10 @@ function MainScreen() {
 
 
   return (
-    <MainBackgroundLayout>
+    <BackgroundLayout 
+    leftImage={images.leftEllipse}
+      rightImage={images.rightEllipse}
+      isRightImageLarge={false}>
       <Header
         title="Modsen Todo list"
         leftImage={images.burgerMenu}
@@ -67,7 +70,7 @@ function MainScreen() {
         <View style={styles.dateButtonContainer}>
           <DateButton
             onPress={() => {
-          
+
               navigation.navigate('TaskScreen', { type: 'Today', title: "Today's tasks" });
             }}
             buttonText="Today"
@@ -94,7 +97,7 @@ function MainScreen() {
       <ModalContainer isModalVisible={modalVisability} toggleModal={handleToggleAddTopicModal}>
         <TopicModal />
       </ModalContainer>
-    </MainBackgroundLayout>
+    </BackgroundLayout>
   );
 }
 
