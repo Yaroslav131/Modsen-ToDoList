@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 
 import { images } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
@@ -44,7 +44,6 @@ function AddNameDescriptionImportant({
           />
         </TouchableOpacity>
       </View>
-
       <Text style={styles.titleText}>Description</Text>
       <TextInput
         style={styles.textInput}

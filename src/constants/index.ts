@@ -102,3 +102,9 @@ export const Images: ImagesType = {
   icWorkout: images.icWorkout,
   icDefault: images.icDefault,
 };
+
+export const dateButtons = [
+  { type: 'Today', title: "Today's tasks", buttonText: 'Today' },
+  { type: 'Week', title: 'Week tasks', buttonText: 'Week' },
+  { type: 'Month', title: 'Month tasks', buttonText: 'Month' },
+];

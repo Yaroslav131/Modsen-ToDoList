@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { View, Text } from 'react-native';
-import { images } from '@/constants';
+import { dateButtons, images } from '@/constants';
 import BackgroundLayout from '@/components/BackgroundLayout';
 import { filtertoDoToday, formatDate } from '@/helpingFunctions';
 import DateButton from '@/components/DateButton';
@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { openModal } from '@/slices/modalSlice';
 import SearchTask from '@/components/SearchTask';
 import Header from '@/components/Header';
-import { StackNavigation } from '@/types';
+import { StackNavigation, tasksScreenType } from '@/types';
 
 function MainScreen() {
   const [currentDate, setCurrentDate] = useState(formatDate(new Date()));
@@ -38,10 +38,19 @@ function MainScreen() {
     dispatch(openModal());
   }
 
+  const dateButtonComponents = dateButtons.map((buttonData, index) => (
+    <DateButton
+      key={index}
+      onPress={() => {
+        navigation.navigate('TaskScreen', { type: buttonData.type as tasksScreenType, title: buttonData.title });
+      }}
+      buttonText={buttonData.buttonText}
+    />
+  ));
 
   return (
-    <BackgroundLayout 
-    leftImage={images.leftEllipse}
+    <BackgroundLayout
+      leftImage={images.leftEllipse}
       rightImage={images.rightEllipse}
       isRightImageLarge={false}>
       <Header
@@ -68,25 +77,7 @@ function MainScreen() {
         <SearchTask />
 
         <View style={styles.dateButtonContainer}>
-          <DateButton
-            onPress={() => {
-
-              navigation.navigate('TaskScreen', { type: 'Today', title: "Today's tasks" });
-            }}
-            buttonText="Today"
-          />
-          <DateButton
-            onPress={() => {
-              navigation.navigate('TaskScreen', { type: 'Week', title: 'Week tasks' });
-            }}
-            buttonText="Week"
-          />
-          <DateButton
-            onPress={() => {
-              navigation.navigate('TaskScreen', { type: 'Month', title: 'Month tasks' });
-            }}
-            buttonText="Month"
-          />
+          {dateButtonComponents}
         </View>
 
         <View style={styles.bottomContainer}>

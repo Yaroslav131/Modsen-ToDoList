@@ -8,19 +8,16 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: height * 0.08,
+    height: "10%",
   },
   leftButton: {
     padding: 5,
     justifyContent: 'center',
-    width: height * 0.04,
-    height: height * 0.04,
     position: 'absolute',
     left: 0,
   },
   buttonImage: {
-    width: '100%',
-    height: '100%',
+    resizeMode: 'stretch'
   },
   titleText: {
     fontSize: 28,

@@ -1,9 +1,9 @@
-import { Dimensions, StyleSheet } from 'react-native';
-
-const screenWidth = Dimensions.get('window').width;
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+   
+    height:"90%",
     alignItems: 'center',
   },
   dateButtonContainer: {
@@ -18,10 +18,11 @@ export const styles = StyleSheet.create({
     color: '#363636',
     fontSize: 28,
     textAlign: 'center',
-    marginTop: 40,
+    marginTop:30,
   },
   changeableTaskText: {
     color: '#fff',
+
   },
   dateText: {
     fontFamily: 'jost_semiBold',
@@ -30,7 +31,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomContainer: {
-    height: screenWidth * 0.28 * 3 + screenWidth * 0.02 * 6,
+    flex: 1,
     alignItems: 'center',
   },
 });

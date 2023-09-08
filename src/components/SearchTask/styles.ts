@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   searchImage: {
     alignSelf: 'center',
-    minHeight: 30,
+    resizeMode: 'stretch'
   },
   searchInput: {
     fontFamily: 'jost_regular',
