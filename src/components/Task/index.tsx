@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useCallback} from 'react';
 import {
   View, Text, TouchableOpacity, TouchableWithoutFeedback, Image,
 } from 'react-native';
@@ -50,10 +50,11 @@ function Task({
     }
   }, [subTasks]);
 
-  const handleCheck = () => {
+  const handleCheck = useCallback(() => {
     dispatch(tongleTaskCompleted(id));
     subTasks.forEach((x) => dispatch(tongleSubTaskCompleted([x.id, !isCompleted])));
-  };
+  }, [dispatch, id, subTasks, isCompleted]);
+
 
   function handleTogglSettingVisiblety() {
     setIsDisplaySetting(!isDisplaySetting);

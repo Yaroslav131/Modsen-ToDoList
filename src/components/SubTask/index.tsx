@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useCallback} from 'react';
 import {
   Text, TouchableOpacity, View, Image,
 } from 'react-native';
@@ -20,9 +20,9 @@ function SubTask({
 }: SubTaskProps) {
   const dispatch = useAppDispatch();
 
-  const handleCheck = () => {
+  const handleCheck = useCallback(() => {
     dispatch(tongleSubTaskCompleted([id, !isCompleted]));
-  };
+  }, [dispatch, id, isCompleted]);
 
   return (
     <View style={styles.container}>
