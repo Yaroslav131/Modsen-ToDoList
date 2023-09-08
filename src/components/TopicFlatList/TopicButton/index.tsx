@@ -3,9 +3,9 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { ImageName, topicButtonType } from '@/types';
-import { Images } from '@/constants';
+import { TOPIC_IMAGES } from '@/constants';
 import { useAppDispatch } from '@/hooks';
 import { deleteTopic } from '@/slices/topicSlice';
 
@@ -81,7 +81,7 @@ function TopicButton(props: TopicButtonProps) {
       activeOpacity={0.5}
       style={[styles.addButton, styles.button]}
     >
-      <Image style={styles.imgStyle} source={Images[props.imageSource]} />
+      <Image style={styles.imgStyle} source={TOPIC_IMAGES[props.imageSource]} />
     </TouchableOpacity>
   ) : props.type == 'custom' && deleteButtonVisability ? (
     <TouchableOpacity
@@ -104,7 +104,7 @@ function TopicButton(props: TopicButtonProps) {
             ],
           },
         ]}
-        source={images.deleteIcon}
+        source={IMAGES.deleteIcon}
       />
     </TouchableOpacity>
   ) : (
@@ -116,7 +116,7 @@ function TopicButton(props: TopicButtonProps) {
       style={[styles.button, { backgroundColor: props.buttonColor }]}
     >
       <Text style={styles.counterText}>{props.taskCounter}</Text>
-      <Image style={styles.imgStyle} source={Images[props.imageSource]} />
+      <Image style={styles.imgStyle} source={TOPIC_IMAGES[props.imageSource]} />
       <Text style={styles.buttonText}>{props.buttonText}</Text>
     </TouchableOpacity>
   );

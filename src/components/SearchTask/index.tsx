@@ -5,7 +5,7 @@ import {
   View, Text, TextInput, TouchableOpacity, Image,
 } from 'react-native';
 
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { StackNavigation } from '@/types';
 import { styles } from './styles';
 
@@ -37,7 +37,7 @@ function SearchTask() {
       {validationError !== '' && <Text style={styles.errorText}>{validationError}</Text>}
       <View style={styles.searchFieldContainer}>
         <TouchableOpacity style={styles.searchButton} onPress={handleSubmit}>
-          <Image style={styles.searchImage} source={images.searchIcon} />
+          <Image style={styles.searchImage} source={IMAGES.searchIcon} />
         </TouchableOpacity>
 
         <TextInput

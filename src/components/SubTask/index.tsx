@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Text, TouchableOpacity, View, Image,
 } from 'react-native';
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { useAppDispatch } from '@/hooks';
 import { tongleSubTaskCompleted } from '@/slices/subTaskSlice';
 import { styles } from './styles';
@@ -28,7 +28,7 @@ function SubTask({
     <View style={styles.container}>
       <View style={styles.subTaskContainer}>
         <TouchableOpacity style={styles.checkBox} onPress={handleCheck}>
-          {isCompleted && <Image style={styles.checkBoxImage} source={images.checked} />}
+          {isCompleted && <Image style={styles.checkBoxImage} source={IMAGES.checked} />}
         </TouchableOpacity>
         <Text style={styles.titleText}>{title}</Text>
       </View>
@@ -40,7 +40,7 @@ function SubTask({
             onDeleteSubTasks(id);
           }}
         >
-          <Image style={styles.checkBoxImage} source={images.cancel} />
+          <Image style={styles.checkBoxImage} source={IMAGES.cancel} />
         </TouchableOpacity>
       )}
     </View>

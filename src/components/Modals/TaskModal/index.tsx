@@ -5,7 +5,7 @@ import {
   ContentContainer, ButtonContainer, ButtonText, CustomButton,
 } from './styles';
 import {
-  addDataTitle, addEndTimeTitle, addStartTimeTitle, addTaskStages,
+  ADD_DATA_TITLE, AddEndTimeTitle, AddStartTimeTitle, ADD_TASK_STAGES,
 } from '@/constants';
 import { SubTaskType, TaskType, addTaskStagesType } from '@/types';
 
@@ -53,7 +53,7 @@ function TaskModal() {
       : [],
   );
   const currentTaskId = useRef(taskOnChange ? taskOnChange.id : getId());
-  const currentStage: addTaskStagesType = addTaskStages[currentStageId];
+  const currentStage: addTaskStagesType = ADD_TASK_STAGES[currentStageId];
 
   let content;
   switch (currentStage) {
@@ -84,7 +84,7 @@ function TaskModal() {
       content = (
         <AddDataTime
           mode="time"
-          titleText={addStartTimeTitle}
+          titleText={AddStartTimeTitle}
           onStartTimeChange={handleOnStartTimeChange}
           taskStartTime={taskStartTime}
         />
@@ -95,7 +95,7 @@ function TaskModal() {
       content = (
         <AddDataTime
           mode="time"
-          titleText={addEndTimeTitle}
+          titleText={AddEndTimeTitle}
           onStartTimeChange={handleOnEndTimeChange}
           taskStartTime={taskEndTime}
         />
@@ -106,7 +106,7 @@ function TaskModal() {
       content = (
         <AddDataTime
           mode="date"
-          titleText={addDataTitle}
+          titleText={ADD_DATA_TITLE}
           onStartTimeChange={handleOnDataChange}
           taskStartTime={taskEndTime}
         />
@@ -223,7 +223,7 @@ function TaskModal() {
           </CustomButton>
         )}
 
-        {addTaskStages.length - 1 === currentStageId ? (
+        {ADD_TASK_STAGES.length - 1 === currentStageId ? (
           <CustomButton onPress={handleAddTask}>
             <ButtonText>{taskOnChange ? 'Change' : 'Add'}</ButtonText>
           </CustomButton>

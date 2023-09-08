@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
 import * as Yup from 'yup';
 import { SubTaskType } from '@/types';
@@ -44,7 +44,7 @@ function AddSubTask({ subTasks, onAddSubTasks, onDeleteSubTasks }: AddSubTaskPro
       />
 
       <AddButton onPress={handleAddAddSubTask}>
-        <AddButtonImage source={images.ic_plus} />
+        <AddButtonImage source={IMAGES.ic_plus} />
       </AddButton>
     </>
   );

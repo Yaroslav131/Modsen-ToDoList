@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { images } from '@/constants';
-import { welcomDescription, welcomTitle } from '@/constants';
+import { IMAGES } from '@/constants';
+import { WELCOM_DESCRIPTION, WELCOME_TITLE } from '@/constants';
 
 import {
   Container,
@@ -20,10 +20,10 @@ interface WelcomScreenProps {
 function WelcomScreen({ pressHandler }: WelcomScreenProps) {
   return (
     <Container>
-      <StyledImage source={images.welcomImg} />
+      <StyledImage source={IMAGES.welcomImg} />
       <Content>
-        <SectionTitle>{welcomTitle}</SectionTitle>
-        <SectionDescription>{welcomDescription}</SectionDescription>
+        <SectionTitle>{WELCOME_TITLE}</SectionTitle>
+        <SectionDescription>{WELCOM_DESCRIPTION}</SectionDescription>
       </Content>
       <StartButton onPress={pressHandler} activeOpacity={0.7}>
         <ButtonText>Get Started</ButtonText>

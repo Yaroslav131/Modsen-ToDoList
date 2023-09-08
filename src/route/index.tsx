@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import TaskScreen from '@/screens/TaskScreen';
 import CustomDrawerItem from '@/components/CustomDrawerItem';
 import { StackRoute } from './stackRoute';
@@ -15,7 +15,7 @@ const drawerScreens = [
     component: StackRoute,
     options: {
       headerShown: false,
-      drawerLabel: () => <CustomDrawerItem icon={images.drawerHome} title="Home" />,
+      drawerLabel: () => <CustomDrawerItem icon={IMAGES.drawerHome} title="Home" />,
     },
   },
   {
@@ -23,7 +23,7 @@ const drawerScreens = [
     component: TaskScreen,
     options: {
       headerShown: false,
-      drawerLabel: () => <CustomDrawerItem icon={images.drawerImportant} title="Important tasks" />,
+      drawerLabel: () => <CustomDrawerItem icon={IMAGES.drawerImportant} title="Important tasks" />,
     },
     initialParams: { type: 'Important', title: 'Important tasks' },
   },
@@ -32,7 +32,7 @@ const drawerScreens = [
     component: TaskScreen,
     options: {
       headerShown: false,
-      drawerLabel: () => <CustomDrawerItem icon={images.doneAll} title="Done tasks" />,
+      drawerLabel: () => <CustomDrawerItem icon={IMAGES.doneAll} title="Done tasks" />,
     },
     initialParams: { type: 'Done', title: 'Done tasks' },
   },
@@ -41,7 +41,7 @@ const drawerScreens = [
     component: TaskScreen,
     options: {
       headerShown: false,
-      drawerLabel: () => <CustomDrawerItem icon={images.drawerOverdue} title="Overdue tasks" />,
+      drawerLabel: () => <CustomDrawerItem icon={IMAGES.drawerOverdue} title="Overdue tasks" />,
     },
     initialParams: { type: 'Falled', title: 'Overdue tasks' },
   },
@@ -50,7 +50,7 @@ const drawerScreens = [
     component: TaskScreen,
     options: {
       headerShown: false,
-      drawerLabel: () => <CustomDrawerItem icon={images.drawerAllTasks} title="All tasks" />,
+      drawerLabel: () => <CustomDrawerItem icon={IMAGES.drawerAllTasks} title="All tasks" />,
     },
     initialParams: { type: 'All', title: 'All tasks' },
   },

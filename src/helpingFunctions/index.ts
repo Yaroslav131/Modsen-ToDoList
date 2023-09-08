@@ -1,6 +1,6 @@
 import uuid from 'react-native-uuid';
 import * as Yup from 'yup';
-import { topicColors } from '@/constants';
+import { TOPIC_COLORS } from '@/constants';
 import { SubTaskType, TaskType, tasksScreenType } from '@/types';
 
 export function formatDate(date: Date): string {
@@ -15,8 +15,8 @@ export function formatDate(date: Date): string {
 }
 
 export function getRandomColor(): string {
-  const randomIndex = Math.floor(Math.random() * topicColors.length);
-  return topicColors[randomIndex];
+  const randomIndex = Math.floor(Math.random() * TOPIC_COLORS.length);
+  return TOPIC_COLORS[randomIndex];
 }
 
 export function getId() {

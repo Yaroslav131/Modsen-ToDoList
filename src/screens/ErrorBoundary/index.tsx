@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 import BackgroundLayout from '@/components/BackgroundLayout';
 import { styles } from './styles';
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -28,8 +28,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (hasError) {
       return (
         <BackgroundLayout
-          leftImage={images.leftEllipse}
-          rightImage={images.rightEllipse}
+          leftImage={IMAGES.leftEllipse}
+          rightImage={IMAGES.rightEllipse}
           isRightImageLarge={false}>
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>Oops, Something went wrong.</Text>

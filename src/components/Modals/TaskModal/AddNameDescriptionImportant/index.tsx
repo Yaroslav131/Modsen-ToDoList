@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
 import { styles } from './styles';
 
@@ -39,7 +39,7 @@ function AddNameDescriptionImportant({
         </View>
         <TouchableOpacity onPress={handleToggleImportent} activeOpacity={0.5} style={styles.checkBox}>
           <Image
-            source={isImportant ? images.important : images.notImportant}
+            source={isImportant ? IMAGES.important : IMAGES.notImportant}
             style={styles.checkBoxImage}
           />
         </TouchableOpacity>

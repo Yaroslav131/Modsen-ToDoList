@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { View, Text } from 'react-native';
-import { dateButtons, images } from '@/constants';
+import { DATE_BUTTONS, IMAGES } from '@/constants';
 import BackgroundLayout from '@/components/BackgroundLayout';
 import { filtertoDoToday, formatDate } from '@/helpingFunctions';
 import DateButton from '@/components/DateButton';
@@ -38,7 +38,7 @@ function MainScreen() {
     dispatch(openModal());
   }
 
-  const dateButtonComponents = dateButtons.map((buttonData, index) => (
+  const dateButtonComponents = DATE_BUTTONS.map((buttonData, index) => (
     <DateButton
       key={index}
       onPress={() => {
@@ -50,12 +50,12 @@ function MainScreen() {
 
   return (
     <BackgroundLayout
-      leftImage={images.leftEllipse}
-      rightImage={images.rightEllipse}
+      leftImage={IMAGES.leftEllipse}
+      rightImage={IMAGES.rightEllipse}
       isRightImageLarge={false}>
       <Header
         title="Modsen Todo list"
-        leftImage={images.burgerMenu}
+        leftImage={IMAGES.burgerMenu}
         onPress={() => {
           navigation.dispatch(DrawerActions.toggleDrawer());
         }}

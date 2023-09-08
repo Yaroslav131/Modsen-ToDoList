@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity, Image,
 } from 'react-native';
-import { images } from '@/constants';
+import { IMAGES } from '@/constants';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import BackgroundLayout from '@/components/BackgroundLayout';
 import { useAppDispatch, useAppSelector } from '@/hooks';
@@ -38,12 +38,12 @@ function TaskScreen() {
 
   return (
     <BackgroundLayout
-      leftImage={images.leftEllipse}
-      rightImage={images.largeRightEllipse}
+      leftImage={IMAGES.leftEllipse}
+      rightImage={IMAGES.largeRightEllipse}
       isRightImageLarge={true}>
       <Header
         title={route.params.title}
-        leftImage={images.backArrow}
+        leftImage={IMAGES.backArrow}
         onPress={() => {
           navigation.goBack();
         }}
@@ -62,7 +62,7 @@ function TaskScreen() {
                 )
               </Text>
               <TouchableOpacity onPress={tonggleDoneTasks}>
-                <Image source={isDoneTasksOpen ? images.closeDone : images.openDone} />
+                <Image source={isDoneTasksOpen ? IMAGES.closeDone : IMAGES.openDone} />
               </TouchableOpacity>
             </View>
           </View>
@@ -72,7 +72,7 @@ function TaskScreen() {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.addButton} onPress={handleTogglModalVisiblety}>
-            <Image style={styles.addButtonImage} source={images.ic_plus} />
+            <Image style={styles.addButtonImage} source={IMAGES.ic_plus} />
           </TouchableOpacity>
         </View>
       </View>

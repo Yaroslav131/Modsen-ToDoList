@@ -2,7 +2,7 @@ import { getId } from '@/helpingFunctions';
 import { ImagesType, TopicType, addTaskStagesType } from '@/types';
 
 
-export const basicTopics: TopicType[] = [
+export const BASIC_TOPICS: TopicType[] = [
   {
     type: 'basic',
     id: getId(),
@@ -40,12 +40,12 @@ export const basicTopics: TopicType[] = [
   },
 ];
 
-export const topicColors: string[] = ['#5EB0D2', '#BE8972', '#2A8899', '#646FD4', '#83BC74'];
+export const TOPIC_COLORS: string[] = ['#5EB0D2', '#BE8972', '#2A8899', '#646FD4', '#83BC74'];
 
-export const welcomTitle = 'Manage your tasks';
-export const welcomDescription = 'Organize, plan, and collaborate on tasks with Modsen todo list.Your busy life deserves this.you can manage checklist and your goal. ';
+export const WELCOME_TITLE = 'Manage your tasks';
+export const WELCOM_DESCRIPTION = 'Organize, plan, and collaborate on tasks with Modsen todo list.Your busy life deserves this.you can manage checklist and your goal. ';
 
-export const addTaskStages: addTaskStagesType[] = [
+export const ADD_TASK_STAGES: addTaskStagesType[] = [
   'AddNameDescriptionImportant',
   'AddTopic',
   'AddStartTime',
@@ -54,13 +54,13 @@ export const addTaskStages: addTaskStagesType[] = [
   'AddSubtask',
 ];
 
-export const addStartTimeTitle = 'Task start time';
-export const addEndTimeTitle = 'Task end time';
-export const addDataTitle = 'Task data';
+export const ADD_START_TIME_TITLE = 'Task start time';
+export const ADD_END_TIME_TITLE = 'Task end time';
+export const ADD_DATA_TITLE = 'Task data';
 
 export const STORAGE_KEY = 'isWellcomSreenCheck';
 
-export const images = {
+export const IMAGES = {
   welcomImg: require('@assets/images/welcomImg.png'),
   leftEllipse: require('@assets/images/leftEllipse.png'),
   rightEllipse: require('@assets/images/rightEllipse.png'),
@@ -93,18 +93,20 @@ export const images = {
 };
 
 
-export const Images: ImagesType = {
-  icPlus: images.icPlus,
-  icBook: images.icBook,
-  icSchool: images.icSchool,
-  icShopping: images.icShopping,
-  icWork: images.icWork,
-  icWorkout: images.icWorkout,
-  icDefault: images.icDefault,
+export const TOPIC_IMAGES: ImagesType = {
+  icPlus: IMAGES.icPlus,
+  icBook: IMAGES.icBook,
+  icSchool: IMAGES.icSchool,
+  icShopping: IMAGES.icShopping,
+  icWork: IMAGES.icWork,
+  icWorkout: IMAGES.icWorkout,
+  icDefault: IMAGES.icDefault,
 };
 
-export const dateButtons = [
+export const DATE_BUTTONS = [
   { type: 'Today', title: "Today's tasks", buttonText: 'Today' },
   { type: 'Week', title: 'Week tasks', buttonText: 'Week' },
   { type: 'Month', title: 'Month tasks', buttonText: 'Month' },
 ];
+
+

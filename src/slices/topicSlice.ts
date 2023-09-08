@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TopicType } from '@/types';
 import { getId, getRandomColor } from '@/helpingFunctions';
-import { basicTopics } from '@/constants';
+import { BASIC_TOPICS } from '@/constants';
 
 interface TopicState {
   value: TopicType[];
 }
 
 const initialState: TopicState = {
-  value: basicTopics,
+  value: BASIC_TOPICS,
 };
 
 const topicSlice = createSlice({
