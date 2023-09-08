@@ -1,23 +1,38 @@
-import { styled } from 'styled-components/native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-export const Container = styled.View`
-  margin-bottom: 20px;
-  flex-direction: row;
-  width: 100%;
-  align-content: center;
-`;
+const windowWidth = Dimensions.get('window').width;
 
-export const NameInputContainer = styled.View`
-  flex: 9;
-`;
-
-export const CheckBox = styled.TouchableOpacity`
-  align-items: flex-end;
-  justify-content: center;
-  flex: 2;
-`;
-
-export const CheckBoxImage = styled.Image<{ windowWidth: number }>`
-  width: ${({ windowWidth }) => windowWidth * 0.1}px;
-  height: ${({ windowWidth }) => windowWidth * 0.1}px;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+    flexDirection: 'row',
+    width: '100%',
+    alignContent: 'center',
+  },
+  nameInputContainer: {
+    flex: 9,
+  },
+  checkBox: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    flex: 2,
+  },
+  checkBoxImage: {
+    width: windowWidth * 0.1,
+    height: windowWidth * 0.1,
+  },
+  titleText: {
+    fontSize: 22,
+    fontFamily: 'signika_regular',
+    color: '#363636',
+  },
+  textInput: {
+    fontFamily: 'jost_regular',
+    color: '#363636',
+    width: '100%',
+    fontSize: 20,
+    borderBottomWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+  },
+});

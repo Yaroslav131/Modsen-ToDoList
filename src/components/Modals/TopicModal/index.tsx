@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { ErrorText } from '@globalStyles/index';
-import {
-  TextInput,
-  TitleText,
-  ContentContainer,
-  ButtonContainer,
-  ButtonText,
-  CustomButton,
-} from '../styles';
 import { closeModal } from '@/slices/modalSlice';
 import { addTopic } from '@/slices/topicSlice';
 import { useAppDispatch } from '@/hooks';
+import { styles } from './styles';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Input is required'),
 });
+
 
 function TopicModal() {
   const [name, setName] = useState('');
@@ -36,19 +30,24 @@ function TopicModal() {
   }
 
   return (
-    <ContentContainer>
-      <TitleText>Topic name</TitleText>
-      <TextInput placeholder="Work" value={name} onChangeText={(text) => setName(text)} />
+    <View style={styles.contentContainer}>
+      <Text style={styles.titleText}>Topic name</Text>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Work"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
       {validationError !== '' && <ErrorText>{validationError}</ErrorText>}
-      <ButtonContainer>
-        <CustomButton onPress={() => dispatch(closeModal())}>
-          <ButtonText>Back</ButtonText>
-        </CustomButton>
-        <CustomButton onPress={handleAddTopic}>
-          <ButtonText>Add</ButtonText>
-        </CustomButton>
-      </ButtonContainer>
-    </ContentContainer>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => dispatch(closeModal())} style={styles.customButton}>
+          <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleAddTopic} style={styles.customButton}>
+          <Text style={styles.buttonText}>Add</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 

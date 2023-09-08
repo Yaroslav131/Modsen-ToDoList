@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import {
   ContentContainer, ButtonContainer, ButtonText, CustomButton,
-} from '../styles';
+} from './styles';
 import {
   addDataTitle, addEndTimeTitle, addStartTimeTitle, addTaskStages,
 } from '@/constants';

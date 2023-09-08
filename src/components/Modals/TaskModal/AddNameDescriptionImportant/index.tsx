@@ -1,13 +1,9 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 
 import { images } from '@/constants';
 import { ErrorText } from '@globalStyles/index';
-import { TextInput, TitleText } from '@/components/Modals/styles';
-
-import {
-  CheckBox, CheckBoxImage, Container, NameInputContainer,
-} from './styles';
+import { styles } from './styles';
 
 interface AddNameDescriptionImportantProps {
   taskName: string;
@@ -18,8 +14,6 @@ interface AddNameDescriptionImportantProps {
   onNameTextChange: (text: string) => void;
   validationError: string;
 }
-
-const windowWidth = Dimensions.get('window').width;
 
 function AddNameDescriptionImportant({
   taskName,
@@ -32,22 +26,28 @@ function AddNameDescriptionImportant({
 }: AddNameDescriptionImportantProps) {
   return (
     <>
-      <Container>
-        <NameInputContainer>
-          <TitleText>Task name</TitleText>
+      <View style={styles.container}>
+        <View style={styles.nameInputContainer}>
+          <Text style={styles.titleText}>Task name</Text>
           {validationError !== '' && <ErrorText>{validationError}</ErrorText>}
-          <TextInput placeholder="Do homework" value={taskName} onChangeText={onNameTextChange} />
-        </NameInputContainer>
-        <CheckBox onPress={handleToggleImportent} activeOpacity={0.5}>
-          <CheckBoxImage
-            source={isImportant ? images.important : images.notImportant}
-            windowWidth={windowWidth}
+          <TextInput
+            style={styles.textInput}
+            placeholder="Do homework"
+            value={taskName}
+            onChangeText={onNameTextChange}
           />
-        </CheckBox>
-      </Container>
+        </View>
+        <TouchableOpacity onPress={handleToggleImportent} activeOpacity={0.5} style={styles.checkBox}>
+          <Image
+            source={isImportant ? images.important : images.notImportant}
+            style={styles.checkBoxImage}
+          />
+        </TouchableOpacity>
+      </View>
 
-      <TitleText>Description</TitleText>
+      <Text style={styles.titleText}>Description</Text>
       <TextInput
+        style={styles.textInput}
         placeholder="Do homework"
         value={description}
         onChangeText={onDescriptionTextChange}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TitleText } from '@/components/Modals/styles';
+import { TitleText } from '@/components/Modals/TaskModal/styles';
 import { DatePikerType } from '@/types';
 
 import { Container, StyledDatePicker } from './styles';
