@@ -5,7 +5,7 @@ import {
   ContentContainer, ButtonContainer, ButtonText, CustomButton,
 } from './styles';
 import {
-  ADD_DATA_TITLE, AddEndTimeTitle, AddStartTimeTitle, ADD_TASK_STAGES,
+  ADD_DATA_TITLE, ADD_END_TIME_TITLE, ADD_START_TIME_TITLE, ADD_TASK_STAGES,
 } from '@/constants';
 import { SubTaskType, TaskType, addTaskStagesType } from '@/types';
 
@@ -84,7 +84,7 @@ function TaskModal() {
       content = (
         <AddDataTime
           mode="time"
-          titleText={AddStartTimeTitle}
+          titleText={ADD_START_TIME_TITLE}
           onStartTimeChange={handleOnStartTimeChange}
           taskStartTime={taskStartTime}
         />
@@ -95,7 +95,7 @@ function TaskModal() {
       content = (
         <AddDataTime
           mode="time"
-          titleText={AddEndTimeTitle}
+          titleText={ADD_END_TIME_TITLE}
           onStartTimeChange={handleOnEndTimeChange}
           taskStartTime={taskEndTime}
         />

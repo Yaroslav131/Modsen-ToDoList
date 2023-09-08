@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import SnackBar from 'react-native-snackbar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -34,8 +34,12 @@ export function StackRoute() {
   async function saveWellcomScreenCheck(value: boolean) {
     try {
       return await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(value));
-    } catch (error) {
-
+    } catch (error: any) {
+      SnackBar.show({
+        text: `${error.message}`,
+        duration: SnackBar.LENGTH_LONG, 
+        
+      });
     }
   }
 
