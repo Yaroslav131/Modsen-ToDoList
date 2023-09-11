@@ -1,9 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { StyleSheet, Appearance } from 'react-native';
+
+const theme = Appearance.getColorScheme();
+
+const dailyTaskTextColor = theme === "light" ? ligthTheme.mainScreen.dailyTaskTextColor : ligthTheme.mainScreen.dailyTaskTextColor
+const changeableTaskTextColor = theme === "light" ? ligthTheme.mainScreen.changeableTaskTextColor : ligthTheme.mainScreen.changeableTaskTextColor
+const dateTextColor = theme === "light" ? ligthTheme.mainScreen.dateTextColor : ligthTheme.mainScreen.dateTextColor
 
 export const styles = StyleSheet.create({
   container: {
-   
-    height:"90%",
+    height: "90%",
     alignItems: 'center',
   },
   dateButtonContainer: {
@@ -15,18 +21,18 @@ export const styles = StyleSheet.create({
   },
   dailyTaskText: {
     fontFamily: 'jost_semiBold',
-    color: '#363636',
+    color: dailyTaskTextColor,
     fontSize: 28,
     textAlign: 'center',
-    marginTop:30,
+    marginTop: 30,
   },
   changeableTaskText: {
-    color: '#fff',
+    color: changeableTaskTextColor,
 
   },
   dateText: {
     fontFamily: 'jost_semiBold',
-    color: '#363636',
+    color: dateTextColor,
     fontSize: 20,
     textAlign: 'center',
   },

@@ -1,4 +1,12 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, Appearance } from 'react-native';
+import { ligthTheme } from '@/theme';
+
+const theme = Appearance.getColorScheme();
+
+const background = theme === "light" ? ligthTheme.taskScreen.backgroundColor : ligthTheme.taskScreen.backgroundColor
+const color = theme === "light" ? ligthTheme.taskScreen.color : ligthTheme.taskScreen.color
+const doneTaskTongTextColor = theme === "light" ? ligthTheme.taskScreen.doneTaskTongTextColor : ligthTheme.taskScreen.doneTaskTongTextColor
+const borderBottomColor = theme === "light" ? ligthTheme.taskScreen.borderBottomColor : ligthTheme.taskScreen.borderBottomColor
 
 const { height, width } = Dimensions.get('window');
 
@@ -8,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 28,
-    color: '#FFF',
+    color: color,
     fontFamily: 'jost_semiBold',
   },
   backButton: {
@@ -38,7 +46,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     width: width * 0.14,
     height: width * 0.14,
-    backgroundColor: '#646FD4',
+    backgroundColor: background,
     borderRadius: 100,
     zIndex: 20,
   },
@@ -53,7 +61,7 @@ export const styles = StyleSheet.create({
   },
   doneTaskTongText: {
     fontSize: 18,
-    color: '#363636',
+    color: doneTaskTongTextColor,
     fontFamily: 'jost_regular',
   },
   doneTaskTongleContainer: {
@@ -65,7 +73,7 @@ export const styles = StyleSheet.create({
 
   horizontalLine: {
     borderBottomWidth: 2,
-    borderBottomColor: '#888',
+    borderBottomColor: borderBottomColor,
     marginVertical: 10,
   },
 

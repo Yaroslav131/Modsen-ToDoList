@@ -1,6 +1,9 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { Appearance, StyleSheet } from 'react-native';
 
-const { height } = Dimensions.get('window');
+const theme = Appearance.getColorScheme();
+
+const color = theme === "light" ? ligthTheme.header.color : ligthTheme.header.color
 
 export const styles = StyleSheet.create({
   headerContainer: {
@@ -21,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 28,
-    color: '#fff',
+    color: color,
     fontFamily: 'jost_semiBold',
   },
 });

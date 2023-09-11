@@ -1,4 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { StyleSheet, Appearance } from 'react-native';
+
+const theme = Appearance.getColorScheme();
+
+const color = theme === "light" ? ligthTheme.topicModal.textColor : ligthTheme.topicModal.textColor
+const buttonTextColor = theme === "light" ? ligthTheme.topicModal.buttonTextColor : ligthTheme.topicModal.buttonTextColor
+const backgroundColor = theme === "light" ? ligthTheme.topicModal.backgroundColor : ligthTheme.topicModal.backgroundColor
+const borderColor = theme === "light" ? ligthTheme.topicModal.borderColor : ligthTheme.topicModal.borderColor
 
 export const styles = StyleSheet.create({
   contentContainer: {
@@ -14,15 +22,15 @@ export const styles = StyleSheet.create({
   titleText: {
     fontSize: 22,
     fontFamily: 'signika_regular',
-    color: '#363636',
+    color: color,
   },
   textInput: {
     fontFamily: 'jost_regular',
-    color: '#363636',
+    color: color,
     width: '100%',
     fontSize: 20,
     borderBottomWidth: 1,
-    borderColor: 'gray',
+    borderColor: borderColor,
     borderRadius: 5,
   },
   buttonContainer: {
@@ -33,13 +41,13 @@ export const styles = StyleSheet.create({
   },
   customButton: {
     borderRadius: 5,
-    backgroundColor: '#fff',
+    backgroundColor: backgroundColor,
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
   buttonText: {
     fontSize: 20,
     fontFamily: 'Roboto',
-    color: '#646fd4',
+    color: buttonTextColor,
   },
 });

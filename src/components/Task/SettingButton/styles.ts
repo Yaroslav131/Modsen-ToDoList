@@ -1,4 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { StyleSheet, Appearance } from 'react-native';
+
+const theme = Appearance.getColorScheme();
+
+const color = theme === "light" ? ligthTheme.searchTask.color : ligthTheme.searchTask.color
 
 export const styles = StyleSheet.create({
   settingButtonWrapper: {
@@ -9,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   settingButtonText: {
     fontFamily: 'signika_light',
-    color: '#363636',
+    color: color,
     fontSize: 18,
   },
 });

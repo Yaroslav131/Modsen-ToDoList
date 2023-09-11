@@ -1,6 +1,13 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { Dimensions, Appearance, StyleSheet } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
+
+const theme = Appearance.getColorScheme();
+
+const color = theme === "light" ? ligthTheme.addNameDescriptionImportant.color : ligthTheme.addNameDescriptionImportant.color
+const borderColor = theme === "light" ? ligthTheme.addNameDescriptionImportant.borderColor : ligthTheme.addNameDescriptionImportant.borderColor
+
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,15 +31,15 @@ export const styles = StyleSheet.create({
   titleText: {
     fontSize: 22,
     fontFamily: 'signika_regular',
-    color: '#363636',
+    color: color,
   },
   textInput: {
     fontFamily: 'jost_regular',
-    color: '#363636',
+    color: color,
     width: '100%',
     fontSize: 20,
     borderBottomWidth: 1,
-    borderColor: 'gray',
+    borderColor: borderColor,
     borderRadius: 5,
   },
 });

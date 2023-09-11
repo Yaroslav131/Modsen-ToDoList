@@ -1,7 +1,12 @@
 import styled from 'styled-components/native';
-import { Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
+import { Dimensions, TouchableOpacity, StyleSheet,Appearance } from 'react-native';
+import { ligthTheme } from '@/theme';
 
 export const { height, width } = Dimensions.get('window');
+
+const theme = Appearance.getColorScheme();
+
+const color = theme === "light" ? ligthTheme.addTopic.color : ligthTheme.addTopic.color
 
 export const Container = styled.View`
   width: 100%;
@@ -13,11 +18,11 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const TopicButton = styled(TouchableOpacity)<{ chosen: boolean }>`
+export const TopicButton = styled(TouchableOpacity) <{ chosen: boolean }>`
   border-radius: 5px;
   padding: 10px;
   width: 100%;
-  background-color: ${(props) => (props.chosen ? '#c4c4c4' : 'transparent')};
+  background-color: ${(props) => (props.chosen ? color : 'transparent')};
 `;
 
 export const ButtonText = styled.Text`

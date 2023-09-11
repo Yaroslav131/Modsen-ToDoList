@@ -9,6 +9,7 @@ import { IMAGES } from '@/constants';
 import { StackNavigation } from '@/types';
 import { styles } from './styles';
 
+
 const validationSchema = Yup.object().shape({
   inputText: Yup.string().required('Input is required'),
 });
@@ -32,8 +33,9 @@ function SearchTask() {
     }
   };
 
+
   return (
-    <View style={styles.searchContainer}>
+    <View style={[styles.searchContainer]}>
       {validationError !== '' && <Text style={styles.errorText}>{validationError}</Text>}
       <View style={styles.searchFieldContainer}>
         <TouchableOpacity style={styles.searchButton} onPress={handleSubmit}>

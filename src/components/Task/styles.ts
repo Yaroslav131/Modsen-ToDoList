@@ -1,11 +1,21 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { ligthTheme } from '@/theme';
+import { StyleSheet, Dimensions, Appearance } from 'react-native';
 
 export const { width } = Dimensions.get('window');
+
+const theme = Appearance.getColorScheme();
+
+const displaySubTasksColor = theme === "light" ? ligthTheme.task.displaySubTasksColor : ligthTheme.task.displaySubTasksColor
+const noDisplaySubTasksColor = theme === "light" ? ligthTheme.task.noDisplaySubTasksColor : ligthTheme.task.noDisplaySubTasksColor
+const backgroundColor = theme === "light" ? ligthTheme.task.backgroundColor : ligthTheme.task.backgroundColor
+const timeTextColor = theme === "light" ? ligthTheme.task.timeTextColor : ligthTheme.task.timeTextColor
+const borderColor = theme === "light" ? ligthTheme.task.borderColor : ligthTheme.task.borderColor
+const color = theme === "light" ? ligthTheme.task.color : ligthTheme.task.color
 
 export const dynamicTextStyles = (isDisplaySubTasks: boolean) => ({
   descriptionText: {
     fontFamily: 'signika_light',
-    color: isDisplaySubTasks ? '#9c9c9c' : '#E7E7E7',
+    color: isDisplaySubTasks ? displaySubTasksColor : noDisplaySubTasksColor,
     fontSize: isDisplaySubTasks ? 18 : 14,
   },
 });
@@ -15,7 +25,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
 
     zIndex: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: backgroundColor,
     borderRadius: 20,
     elevation: 20,
     alignItems: 'center',
@@ -26,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: '90%',
-    backgroundColor: '#FFF',
+    backgroundColor: backgroundColor,
     borderRadius: 20,
     elevation: 2,
     margin: 10,
@@ -53,7 +63,7 @@ export const styles = StyleSheet.create({
   },
   timeText: {
     fontFamily: 'signika_light',
-    color: '#888',
+    color: timeTextColor,
   },
   taskContainer: {
     flexDirection: 'row',
@@ -65,7 +75,7 @@ export const styles = StyleSheet.create({
     height: width * 0.08,
     width: width * 0.08,
     borderWidth: 2,
-    borderColor: '#E7E7E7',
+    borderColor: borderColor,
     borderRadius: 100,
   },
   checkBoxImage: {
@@ -79,7 +89,7 @@ export const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: 'signika_light',
-    color: '#363636',
+    color: color,
     fontSize: 22,
   },
   optionMenuContainer: {
