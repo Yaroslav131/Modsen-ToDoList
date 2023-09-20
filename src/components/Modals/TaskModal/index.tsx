@@ -12,12 +12,13 @@ import { SubTaskType, TaskType, addTaskStagesType } from '@/types';
 import AddNameDescriptionImportant from './AddNameDescriptionImportant';
 import AddTopic from './AddTopic';
 import AddDataTime from './AddTime';
-import { getId } from '@/helpingFunctions';
+import { combineDateAndTime, getId } from '@/helpingFunctions';
 import AddSubTask from './addSubTasks';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { addTask, changeTask } from '@/slices/taskSlice';
 import { addSubTask } from '@/slices/subTaskSlice';
 import { closeModal } from '@/slices/modalSlice';
+import { onDisplayNotification } from '@/notifications';
 
 const validationSchema = Yup.object().shape({
   taskName: Yup.string().required('Input is required'),
@@ -138,6 +139,9 @@ function TaskModal() {
     };
 
     taskOnChange ? dispatch(changeTask(task)) : dispatch(addTask(task));
+
+    onDisplayNotification(combineDateAndTime(taskData, taskStartTime), taskName, "start")
+    onDisplayNotification(combineDateAndTime(taskData, taskEndTime), taskName, "end")
 
     dispatch(addSubTask(subTasks));
     dispatch(closeModal());

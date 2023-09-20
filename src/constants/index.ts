@@ -109,4 +109,4 @@ export const DATE_BUTTONS = [
   { type: 'Month', title: 'Month tasks', buttonText: 'Month' },
 ];
 
-
+export const NATIFICATIONS_DALAY = 10
