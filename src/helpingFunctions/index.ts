@@ -178,3 +178,14 @@ export function getSortedTasks(tasks: TaskType[], type: tasksScreenType): TaskTy
   }
   return tasks;
 }
+
+export function combineDateAndTime(date: Date, time: Date): Date {
+  const combinedDate = new Date(date);
+  combinedDate.setHours(time.getHours());
+  combinedDate.setMinutes(time.getMinutes());
+  combinedDate.setSeconds(time.getSeconds());
+  combinedDate.setMilliseconds(time.getMilliseconds());
+
+  console.log(combinedDate)
+  return combinedDate;
+}

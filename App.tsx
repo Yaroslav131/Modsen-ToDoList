@@ -8,6 +8,7 @@ import Route from '@/route';
 import 'react-native-gesture-handler';
 import ErrorBoundary from '@/screens/ErrorBoundary';
 import { ligthTheme } from '@/theme';
+import { onDisplayNotification } from '@/notifications';
 
 function App() {
   useEffect(() => {
