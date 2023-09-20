@@ -1,7 +1,8 @@
 import { NATIFICATIONS_DALAY } from '@/constants';
+import { getId } from '@/helpingFunctions';
 import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
 
-export async function onDisplayNotification(date: Date, taskName: string,taskStatus:string) {
+export async function onDisplayNotification(date: Date, taskName: string, taskStatus: string) {
 
     const trigger: TimestampTrigger = {
         type: TriggerType.TIMESTAMP,
@@ -17,7 +18,7 @@ export async function onDisplayNotification(date: Date, taskName: string,taskSta
 
     await notifee.createTriggerNotification(
         {
-            id: '123',
+            id: getId(),
             title: 'Your Task!',
             body: `${taskName} will ${taskStatus} after ${NATIFICATIONS_DALAY} minutes`,
             android: {
